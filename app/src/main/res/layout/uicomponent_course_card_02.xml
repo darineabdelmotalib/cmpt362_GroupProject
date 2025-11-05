@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Course card component-->
+<!--Detailed course information (with sections, times, locations, etc.)-->
+
+<!--
+ids:
+(defined in ids.xml)
+    course_code = Course code ("CMPT 362")
+    course_credits = Course units ("(3)")
+    course_title = Course title ("Mobile Appli..")
+    course_instructor = Course instructor ("Xingdong Yang")
+    course_lecture_section = Lecture section ("Lecture D100")
+    course_lecture_time = Lecture time ("Thu, 8:30 a.m–11:20 a.m")
+    course_lecture_location = Lecture location ("In Person, AQ3181")
+    course_lab_section = Lecture section ("Lab D101")
+    course_lab_time = Lecture time ("Thu, 8:30 a.m–11:20 a.m")
+    course_lab_location = Lecture location ("In Person, AQ3181")
+(not defined in ids.xml)
+    course_lecture_details_layout = LinearLayout containing lecture details
+    course_lab_details_layout = LinearLayout containing lab details
+ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_course_card_02"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="1.5dp"
+    android:orientation="vertical">
+
+    <!--Header-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_course_card_02_header"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:layout_marginBottom="1.5dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@id/course_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CMPT 362"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@id/course_credits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:text="(3)"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@id/course_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mobile Applications Programming and Design"
+                android:textColor="@color/gray"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@id/course_instructor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Xingdong Yang"
+                android:textColor="@color/gray"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_chevron_right_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Details-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_course_card_02_details"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/course_lecture_details_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@id/course_lecture_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lecture D100"
+                android:layout_marginBottom="4dp"
+                android:textColor="@color/gray"
+                android:textSize="12sp"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                >
+
+                <TextView
+                    android:id="@id/course_lecture_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thu, 8:30 a.m–11:20 a.m"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@id/course_lecture_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="In Person, AQ3181"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/course_lab_details_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@id/course_lab_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Lab D101"
+                android:textColor="@color/gray"
+                android:textSize="12sp"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                >
+
+                <TextView
+                    android:id="@id/course_lab_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thu, 8:30 a.m–11:20 a.m"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@id/course_lab_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="In Person, AQ3181"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

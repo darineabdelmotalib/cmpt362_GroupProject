@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Component for semester plan-->
+<!--
+ids:
+(defined in ids.xml)
+    semester_term = Term ("Fall 2025")
+    semester_total_credits = Units ("9 units")
+(not defined in ids.xml)
+    button_view_schedule = View Schedule Button
+    button_edit_schedule = Edit Schedule Button
+-->
+<!--
+ids from uicomponent_course_card_01 :
+(defined in ids.xml)
+    course_code = Course code ("CMPT 362")
+    course_credits = Course units ("(3)")
+    course_title = Course title ("Mobile Appli..")
+    course_instructor = Course instructor ("Xingdong Yang")
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--Header-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@id/semester_term"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="3dp"
+            android:layout_marginLeft="2.5dp"
+            android:text="Fall 2025"
+            android:textSize="20dp"
+            android:textColor="@android:color/black" />
+
+        <!-- Black underline -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/semester_plan_outline" />
+
+    </LinearLayout>
+
+    <!--Section with units and buttons-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <TextView
+            android:id="@id/semester_total_credits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9 units"
+            android:textColor="@color/semester_plan_credits"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/button_view_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_view_schedule"
+                android:contentDescription="View Schedule"/>
+
+            <ImageButton
+                android:id="@+id/button_edit_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/btn_edit"
+                android:contentDescription="Edit Schedule" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--List view for course cards-->
+    <!--items will use ui_component_course_card_01-->
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2.5dp"
+        android:layout_marginRight="2.5dp">
+    </ListView>
+
+</LinearLayout>

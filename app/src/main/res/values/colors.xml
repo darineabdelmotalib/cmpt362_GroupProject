@@ -7,4 +7,23 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray">#767676</color>
+
+    <!--UI COMPONENT COLORS-->
+    <!--course card colors-->
+    <color name="course_card_header">#F3F3F3</color>
+    <color name="course_card_details">#FFFFFFFF</color>
+    <color name="course_card_outline">#A4A4A4</color>
+
+    <!--button colors-->
+    <color name="button_edit">#D9D9D9</color>
+    <color name="button_view_schedule">#D9D9D9</color>
+    <!--/UI COMPONENT COLORS-->
+
+    <!--SEMESTER PLAN-->
+    <color name="semester_plan_outline">#777777</color>
+    <color name="semester_plan_credits">#777777</color>
+    <!--/SEMESTER PLAN-->
+
+
 </resources>

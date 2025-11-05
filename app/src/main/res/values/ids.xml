@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--course card-->
+    <item name="course_code" type="id"/> <!--Course code ("CMPT 362")-->
+    <item name="course_credits" type="id"/> <!--Course units ("(3)")-->
+    <item name="course_title" type="id"/> <!--Course title ("Mobile Appli..")-->
+    <item name="course_instructor" type="id"/> <!--Course instructor ("Xingdong Yang")-->
+
+    <item name="course_lecture_section" type="id"/> <!--Lecture section ("Lecture D100")-->
+    <item name="course_lecture_time" type="id"/> <!--Lecture time ("Thu, 8:30 a.m–11:20 a.m")-->
+    <item name="course_lecture_location" type="id"/> <!--Lecture location ("In Person, AQ3181")  -->
+    <item name="course_lab_section" type="id"/> <!--Lecture section ("Lab D101")-->
+    <item name="course_lab_time" type="id"/> <!--Lecture time ("Thu, 8:30 a.m–11:20 a.m")-->
+    <item name="course_lab_location" type="id"/> <!--Lecture location ("In Person, AQ3181")-->
+    <!--/course card-->
+
+    <!--semester plan-->
+    <item name="semester_term" type="id"/> <!--Term ("Fall 2025")-->
+    <item name="semester_total_credits" type="id"/> <!--Units ("9 units")-->
+    <!--/semester plan-->
+
+</resources>
