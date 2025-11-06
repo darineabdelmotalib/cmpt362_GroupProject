@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_margin="30dp">
+
+        <ImageView
+            android:id="@+id/profile_character"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_edittext_background"
+            />
+
+        <ImageButton
+            android:id="@+id/button_change_character"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/edit_24dp"
+            android:background="@drawable/edit_24dp"
+            android:padding="8dp"
+            android:contentDescription="Change character"/>
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="Name"/>
+
+    <EditText
+        android:id="@+id/userNameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext_background"
+        android:hint="User's Name"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="Major"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_edittext_background"
+        android:paddingEnd="30dp"
+        android:paddingVertical="10dp"
+        android:clipToPadding="false">
+
+        <EditText
+            android:id="@+id/input_change_major"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="User's Major"
+            android:inputType="text"
+            android:paddingStart="10dp" />
+
+        <ImageButton
+            android:id="@+id/button_change_major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:src="@drawable/search_24dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Search for Major"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/add_major"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_edittext_background"
+        android:paddingEnd="30dp"
+        android:paddingVertical="10dp"
+        android:clipToPadding="false">
+
+        <EditText
+            android:id="@+id/input_add_major"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Add a major"
+            android:inputType="text"
+            android:paddingStart="10dp" />
+
+        <ImageButton
+            android:id="@+id/button_add_major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:src="@drawable/add_24dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Search for Major"/>
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="Minor"/>
+
+    <FrameLayout
+        android:id="@+id/add_minor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_edittext_background"
+        android:paddingEnd="30dp"
+        android:paddingVertical="10dp"
+        android:clipToPadding="false">
+
+        <EditText
+            android:id="@+id/input_add_minor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Add a minor"
+            android:inputType="text"
+            android:paddingStart="10dp" />
+
+        <ImageButton
+            android:id="@+id/button_add_minor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:src="@drawable/add_24dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Search for Minor"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/material_dynamic_neutral_variant60"/>
+
+        <Button
+            android:id="@+id/button_save_changes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save Changes"
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/material_dynamic_neutral30"/>
+    </LinearLayout>
+
+
+</LinearLayout>
