@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg">
+
+    <include
+        android:id="@+id/topAppBar"
+        layout="@layout/layout_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/pageTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_cs_major"
+                android:textStyle="bold"
+                android:textAppearance="?attr/textAppearanceHeadlineMedium" />
+
+            <TextView
+                android:id="@+id/pageSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subtitle_bsc"
+                android:textAllCaps="true"
+                android:letterSpacing="0.05"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:paddingTop="6dp"
+                android:paddingBottom="12dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/calendarButton"
+                style="@style/Widget.CoursePlanner.CalendarButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/link_spring_2026_calendar"
+                app:icon="@drawable/ic_arrow_right_24" />
+
+            <TextView
+                android:id="@+id/sectionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/program_requirements"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="@color/label_grey"
+                android:paddingTop="20dp"
+                android:paddingBottom="8dp" />
+
+            <LinearLayout
+                android:id="@+id/lowerHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/lower_division"
+                    android:textStyle="bold"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                <ImageView
+                    android:id="@+id/lowerExpandIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_expand_less_24"/>
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                android:id="@+id/lowerContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_check_circle_24"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/students_complete_all"
+                        android:paddingStart="8dp"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"/>
+                </LinearLayout>
+
+                <include layout="@layout/row_requirement_red"
+                    android:id="@+id/row1"
+                    android:tag="@string/placeholder_course"/>
+
+                <include layout="@layout/row_requirement_red"
+                    android:id="@+id/row2"
+                    android:tag="@string/placeholder_course"/>
+
+                <include layout="@layout/row_requirement_red"
+                    android:id="@+id/row3"
+                    android:tag="@string/placeholder_course"/>
+
+                <include layout="@layout/row_requirement_red"
+                    android:id="@+id/row4"
+                    android:tag="@string/placeholder_course"/>
+
+                <include layout="@layout/row_requirement_red"
+                    android:id="@+id/row5"
+                    android:tag="@string/placeholder_course"/>
+
+                <include layout="@layout/row_requirement_red"
+                    android:id="@+id/row6"
+                    android:tag="@string/placeholder_course"/>
+
+                <include layout="@layout/row_requirement_red"
+                    android:id="@+id/row7"
+                    android:tag="@string/placeholder_course"/>
+
+                <include layout="@layout/row_requirement_red"
+                    android:id="@+id/row8"
+                    android:tag="@string/placeholder_course"/>
+
+                <include layout="@layout/row_requirement_red"
+                    android:id="@+id/row9"
+                    android:tag="@string/placeholder_course"/>
+
+                <include layout="@layout/row_requirement_red"
+                    android:id="@+id/row10"
+                    android:tag="@string/placeholder_course"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/upperHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/upper_division"
+                    android:textStyle="bold"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                <ImageView
+                    android:id="@+id/upperExpandIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_expand_more_24"/>
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                android:id="@+id/upperContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="12dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12/45 upper division units completed"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:paddingBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Students complete at least 45 upper division units including"
+                    android:paddingBottom="6dp" />
+
+                <include layout="@layout/row_requirement_neutral"
+                    android:id="@+id/row_ud_1"
+                    android:tag="@string/placeholder_course"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

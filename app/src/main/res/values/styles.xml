@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.CoursePlanner.CalendarButton" parent="Widget.Material3.Button">
+        <item name="android:background">@drawable/bg_calendar_button</item>
+        <item name="backgroundTint">@null</item>
+
+        <item name="android:textColor">@color/calendar_text_white</item>
+        <item name="android:textAllCaps">false</item>
+
+        <!-- compact size -->
+        <item name="android:minHeight">36dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">8dp</item>
+
+        <!-- icon on the right, white -->
+        <item name="iconGravity">textEnd</item>
+        <item name="iconTint">@color/calendar_text_white</item>
+    </style>
+
+</resources>
