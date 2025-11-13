@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import darine_abdelmotalib.example.groupproject.R
-import darine_abdelmotalib.example.groupproject.databinding.ActivityChooseProgramBinding
+import darine_abdelmotalib.example.groupproject.databinding.FragmentChooseProgramBinding
 import darine_abdelmotalib.example.groupproject.ui.adapter.ProgramItem
 import darine_abdelmotalib.example.groupproject.ui.adapter.ProgramListAdapter
 import darine_abdelmotalib.example.groupproject.utils.ToolbarUtils
@@ -13,12 +13,12 @@ import darine_abdelmotalib.example.groupproject.utils.ToolbarUtils
 
 class ChooseProgramActivity : ComponentActivity() {
 
-    private lateinit var binding: ActivityChooseProgramBinding
+    private lateinit var binding: FragmentChooseProgramBinding
     private val adapter by lazy { ProgramListAdapter(::onProgramClicked) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityChooseProgramBinding.inflate(layoutInflater)
+        binding = FragmentChooseProgramBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ToolbarUtils.setupToolbar(this, binding.includeToolbar.topAppBar, R.string.title_program_requirements)

@@ -17,7 +17,7 @@ class CourseInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_course_info, container, false)
+        return inflater.inflate(R.layout.fragment_course_info_plan.xml, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

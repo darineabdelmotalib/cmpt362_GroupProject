@@ -1,406 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CourseInfoFragment">
+    android:background="@color/page_bg">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <include
+        android:id="@+id/topAppBar"
+        layout="@layout/layout_toolbar" />
+
+    <!--DEBUG BUTTONS-->
+    <Button
+        android:id="@+id/debug_forward"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:text="debug_forward" />
+    <Button
+        android:id="@+id/debug_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="debug_back" />
+    <!--END DEBUG BUTTONS-->
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:navigationIcon="@drawable/baseline_arrow_back_24"
-            app:title="Fall 2025"
-            app:titleTextColor="#000000" />
-
-        <TextView
-            android:id="@+id/sectionDetails"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="25dp"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="2dp"
-            android:text="Lecture: D100  |  Lab: D101"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/courseTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="2dp"
-            android:text="CMPT362 (3)"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/courseTitleFull"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="2dp"
-            android:text="Mobile Applications Programming and Design"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/sectionInfo"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
             <TextView
-                android:id="@+id/sectionHeader"
-                android:layout_width="match_parent"
+                android:id="@+id/codeCredits"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingStart="10dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="5dp"
-                android:text="Section Info"
-                android:textColor="#000000"
-                android:textSize="14sp"
                 android:textStyle="bold"
-                app:drawableEndCompat="@drawable/outline_arrow_drop_up_24" />
-
-            <View
-                android:id="@+id/sectionView"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="#000000" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/sectionInfoContent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+                android:textAppearance="?attr/textAppearanceTitleLarge"
+                android:text="@string/placeholder_code_credits" />
 
             <TextView
-                android:id="@+id/instructorTitle"
+                android:id="@+id/longTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="10dp"
-                android:paddingStart="10dp"
+                android:text="@string/placeholder_course_long_title"
                 android:paddingTop="2dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="2dp"
-                android:text="Instructor"
-                android:textStyle="bold" />
+                android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
-                android:id="@+id/instructorName"
-                android:layout_width="match_parent"
+                android:id="@+id/courseInfoHeader"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="2dp"
-                android:text="Xingdong Yang"
-                android:textColor="#000000" />
+                android:text="@string/header_course_info"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:paddingBottom="6dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
 
             <TextView
-                android:id="@+id/instructorEmail"
-                android:layout_width="match_parent"
+                android:id="@+id/prerequisitesHeader"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="2dp"
-                android:text="xingdong@sfu.ca"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/scheduleText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="10dp"
-                android:paddingStart="10dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="2dp"
-                android:text="Schedule"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/lectureTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:paddingStart="10dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="2dp"
-                android:text="Lecture"
-                android:textStyle="bold" />
+                android:text="@string/header_prerequisites"
+                android:paddingTop="14dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurface" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="15dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="8dp">
 
-                <TextView
-                    android:id="@+id/lectureSection"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingStart="10dp"
-                    android:paddingTop="2dp"
-                    android:paddingEnd="10dp"
-                    android:paddingBottom="2dp"
-                    android:text="Section: D100"
-                    android:textAlignment="viewStart"
-                    android:textSize="10sp" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="6dp">
 
-                <TextView
-                    android:id="@+id/lectureClassNumber"
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_checkbox_blank_24"
+                        />
+                    <!--android:tint="?attr/colorOnSurfaceVariant"-->
+
+                    <TextView
+                        android:id="@+id/prereq1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:text="@string/placeholder_prereq_units"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingStart="10dp"
-                    android:paddingTop="2dp"
-                    android:paddingEnd="10dp"
-                    android:paddingBottom="2dp"
-                    android:text="Class number: 5508"
-                    android:textAlignment="viewEnd"
-                    android:textSize="10sp" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_checkbox_blank_24"
+                        />
+<!--                    android:tint="?attr/colorOnSurfaceVariant"-->
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingStart="8dp">
+
+                        <TextView
+                            android:id="@+id/prereq2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/placeholder_prereq_course"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"/>
+
+                        <TextView
+                            android:id="@+id/prereq2Note"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/placeholder_min_grade_note"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant"/>
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
-                android:id="@+id/lectureLocation"
-                android:layout_width="match_parent"
+                android:id="@+id/descriptionHeader"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="2dp"
-                android:text="Location" />
-
-            <TextView
-                android:id="@+id/lectureRoomNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="2dp"
-                android:text="AQ3181"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/lectureTimeText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:paddingStart="20dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="2dp"
-                android:text="Times:" />
-
-            <TextView
-                android:id="@+id/lectureScheduledTimes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="2dp"
-                android:text="Thu, 8:30 a.m – 11:20 a.m"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/labTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:paddingStart="10dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="2dp"
-                android:text="Lab"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="15dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/labSection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingStart="10dp"
-                    android:paddingTop="2dp"
-                    android:paddingEnd="10dp"
-                    android:paddingBottom="2dp"
-                    android:text="Section: D101"
-                    android:textAlignment="viewStart"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:id="@+id/labClassNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingStart="10dp"
-                    android:paddingTop="2dp"
-                    android:paddingEnd="10dp"
-                    android:paddingBottom="2dp"
-                    android:text="Class number: 1234"
-                    android:textAlignment="viewEnd"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/labLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="2dp"
-                android:text="Location" />
-
-            <TextView
-                android:id="@+id/labRoomNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="2dp"
-                android:text="AQ3181"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/labTimeText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:paddingStart="20dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="2dp"
-                android:text="Times:" />
-
-            <TextView
-                android:id="@+id/labScheduledTimes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="2dp"
-                android:text="Thu, 11:30 a.m – 12:20 p.m"
-                android:textColor="#000000" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/courseInfo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/courseHeader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingStart="10dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="5dp"
-                android:text="Course Info"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:drawableEndCompat="@drawable/outline_arrow_drop_up_24" />
-
-            <View
-                android:id="@+id/courseView"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="#000000" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/courseInfoContent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/prerequisitesTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:paddingStart="10dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="2dp"
-                android:text="Prerequisites"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:id="@+id/prerequisitesList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"></LinearLayout>
-
-            <TextView
-                android:id="@+id/descriptionTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:paddingStart="10dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="2dp"
-                android:text="Description"
-                android:textStyle="bold" />
+                android:text="@string/header_description"
+                android:paddingTop="16dp"
+                android:paddingBottom="6dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurface" />
 
             <TextView
                 android:id="@+id/descriptionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="50dp"
-                android:text="Teaches students how to design and implement smartphone applications. Topics include development environment, phone emulator, key programming paradigms, UI design including views, fragments, and activities, data persistence, threads, services, embedded sensors, and location based services (e.g., Google Maps). Concepts are reinforced through programming assignments and group projects. "
-                android:textColor="#000000" />
-        </LinearLayout>
+                android:text="@string/placeholder_description"
+                android:textAppearance="?attr/textAppearanceBodySmall" />
 
-    </LinearLayout>
-</ScrollView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

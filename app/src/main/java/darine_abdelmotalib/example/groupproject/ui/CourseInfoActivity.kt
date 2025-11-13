@@ -3,16 +3,16 @@ package darine_abdelmotalib.example.groupproject.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import darine_abdelmotalib.example.groupproject.R
-import darine_abdelmotalib.example.groupproject.databinding.ActivityCourseInfoBinding
+import darine_abdelmotalib.example.groupproject.databinding.FragmentCourseInfoBinding
 import darine_abdelmotalib.example.groupproject.utils.ToolbarUtils
 
 class CourseInfoActivity : ComponentActivity() {
 
-    private lateinit var binding: ActivityCourseInfoBinding
+            private lateinit var binding: FragmentCourseInfoBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityCourseInfoBinding.inflate(layoutInflater)
+            override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                binding = FragmentCourseInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val toolbarTitle = intent.getStringExtra("toolbarTitle")
