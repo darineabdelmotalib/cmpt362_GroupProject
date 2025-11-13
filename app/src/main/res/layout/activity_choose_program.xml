@@ -24,7 +24,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Choose a program"
-            android:textAppearance="?attr/textAppearanceHeadlineSmall" />
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/majorSubheading"
@@ -32,8 +34,9 @@
             android:layout_height="wrap_content"
             android:text="Major"
             android:paddingTop="16dp"
-            android:textAppearance="?attr/textAppearanceLabelLarge"
-            android:textColor="?attr/colorOnSurfaceVariant" />
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/label_grey" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
