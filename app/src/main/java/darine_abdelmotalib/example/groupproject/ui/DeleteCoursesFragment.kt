@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import darine_abdelmotalib.example.groupproject.R
 import com.google.android.material.card.MaterialCardView
 
-// placeholder for database - for testing purposes
+//placeholder for database - for testing purposes
 data class Course(
     val title: String,
     val name: String,
@@ -27,7 +27,7 @@ class DeleteCoursesFragment : Fragment() {
     private lateinit var coursesSelected: TextView
     private lateinit var adapter: RecyclerViewAdapter
 
-    // data for testing purposes
+    //data for testing purposes
     private val courses = arrayListOf(
         Course("CMPT 362 (3)", "Mobile Applications Programming and Design", "Xingdong Yang"),
         Course("CMPT 123 (3)", "Course name here", "Instructor name here")
@@ -92,7 +92,7 @@ class RecyclerViewAdapter(
         val courseName = view.findViewById<TextView>(R.id.cvCourseName)
         val courseInstructor = view.findViewById<TextView>(R.id.cvInstructor)
 
-        // set course data for cardview
+        //set course data for cardview
         fun bind(course: Course, selected: Boolean) {
             courseTitle.text = course.title
             courseName.text = course.name
@@ -101,7 +101,7 @@ class RecyclerViewAdapter(
             cardOnClickListener(course)
         }
 
-        // handle course card selection/deselection
+        //handle course card selection/deselection
         private fun cardOnClickListener(course: Course) {
             courseCard.setOnClickListener {
                 courseCard.isChecked = !courseCard.isChecked
@@ -127,7 +127,7 @@ class RecyclerViewAdapter(
         return ViewHolder(view)
     }
 
-    // fill data for each course in the list
+    //fill data for each course in the list
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val isChecked = selectedCourses.contains(courses[position])
         holder.bind(courses[position], isChecked)

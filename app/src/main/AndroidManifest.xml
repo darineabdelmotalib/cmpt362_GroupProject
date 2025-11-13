@@ -1,4 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -8,15 +11,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupProject">
 
+        <!-- database test as the launcher for now -->
         <activity
-            android:name=".ui.ChooseProgramActivity"
+            android:name=".ui.DatabaseTestActivity"
             android:exported="true"
-            android:label="@string/title_program_requirements">
+            android:label="Database test (SFU API)">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- course detail screen -->
+        <activity
+            android:name=".ui.CourseDetailActivity"
+            android:exported="false"
+            android:label="Course Details" />
+
+        <!-- exisiting actvities we alr had -->
+        <activity
+            android:name=".ui.ChooseProgramActivity"
+            android:exported="false"
+            android:label="@string/title_program_requirements" />
 
         <activity
             android:name=".ui.ProgramRequirementsActivity"
