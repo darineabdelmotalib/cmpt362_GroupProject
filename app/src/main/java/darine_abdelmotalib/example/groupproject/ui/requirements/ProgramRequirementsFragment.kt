@@ -7,11 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.checkbox.MaterialCheckBox
 import darine_abdelmotalib.example.groupproject.R
+import darine_abdelmotalib.example.groupproject.data.db.CsRequirementsDb
 import darine_abdelmotalib.example.groupproject.databinding.FragmentProgramRequirementsBinding
 
 class ProgramRequirementsFragment : Fragment() {
@@ -28,14 +29,27 @@ class ProgramRequirementsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProgramRequirementsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val toolbar = binding.topAppBar.toolbar
-        toolbar.title = getString(R.string.title_cs_major)
-        toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.debugForward.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_programRequirementsFragment_to_courseInfoFragment)
+        }
+        binding.debugBack.setOnClickListener {
+            findNavController().popBackStack()
         }
 
+        setupExpandCollapse()
+        fillRequirementRows()
+        tintCheckboxes()
+        wireRequirementClicks()
+    }
+
+    private fun setupExpandCollapse() {
         updateLowerSection()
         updateUpperSection()
 
@@ -47,27 +61,11 @@ class ProgramRequirementsFragment : Fragment() {
             upperExpanded = !upperExpanded
             updateUpperSection()
         }
-
-        fillRowTexts()
-        applyCheckboxTint()
-        wireCourseRowClicks()
-
-        /* -- DEBUG BUTTONS -- */
-        binding.debugForward.setOnClickListener {
-            findNavController()
-                .navigate(R.id.action_programRequirementsFragment_to_courseInfoFragment)
-        }
-        binding.debugBack.setOnClickListener {
-            findNavController()
-                .navigate(R.id.action_programRequirementsFragment_to_chooseProgramFragment)
-        }
-        /* -- END DEBUG BUTTONS -- */
-
-        return root
     }
 
     private fun updateLowerSection() {
-        binding.lowerContent.visibility = if (lowerExpanded) View.VISIBLE else View.GONE
+        binding.lowerContent.visibility =
+            if (lowerExpanded) View.VISIBLE else View.GONE
         binding.lowerExpandIcon.setImageResource(
             if (lowerExpanded) R.drawable.ic_expand_less_24
             else R.drawable.ic_expand_more_24
@@ -75,59 +73,50 @@ class ProgramRequirementsFragment : Fragment() {
     }
 
     private fun updateUpperSection() {
-        binding.upperContent.visibility = if (upperExpanded) View.VISIBLE else View.GONE
+        binding.upperContent.visibility =
+            if (upperExpanded) View.VISIBLE else View.GONE
         binding.upperExpandIcon.setImageResource(
             if (upperExpanded) R.drawable.ic_expand_less_24
             else R.drawable.ic_expand_more_24
         )
     }
 
-    private fun fillRowTexts() {
-        val ids = intArrayOf(
-            R.id.row1, R.id.row2, R.id.row3, R.id.row4, R.id.row5,
-            R.id.row6, R.id.row7, R.id.row8, R.id.row9, R.id.row10,
-            R.id.row_ud_1
-        )
-
-        ids.forEach { id ->
-            val row = binding.root.findViewById<View>(id)
-            val tv = row?.findViewById<TextView>(R.id.text) ?: return@forEach
-            val text = row.tag?.toString() ?: getString(R.string.placeholder_course)
-            tv.text = text
+    private fun fillRequirementRows() {
+        CsRequirementsDb.allCourses().forEach { course ->
+            val row = binding.root.findViewById<View>(course.rowId) ?: return@forEach
+            val tv = row.findViewById<TextView>(R.id.text)
+            tv.text = course.label
         }
     }
 
-    private fun applyCheckboxTint() {
+    private fun tintCheckboxes() {
         val states = arrayOf(
             intArrayOf(android.R.attr.state_checked),
             intArrayOf()
         )
-        val red = ContextCompat.getColor(requireContext(), R.color.sfu_red)
+        val red = requireContext().getColor(R.color.sfu_red)
         val gray = Color.parseColor("#777777")
         val tint = ColorStateList(states, intArrayOf(red, gray))
 
-        val rows = listOf(
-            R.id.row1, R.id.row2, R.id.row3, R.id.row4, R.id.row5,
-            R.id.row6, R.id.row7, R.id.row8, R.id.row9, R.id.row10,
-            R.id.row_ud_1
-        )
-        rows.forEach { id ->
-            val row = binding.root.findViewById<View>(id)
-            row?.findViewById<MaterialCheckBox>(R.id.check)?.buttonTintList = tint
+        CsRequirementsDb.allCourses().forEach { course ->
+            val row = binding.root.findViewById<View>(course.rowId) ?: return@forEach
+            row.findViewById<MaterialCheckBox>(R.id.check)?.buttonTintList = tint
         }
     }
 
-    private fun wireCourseRowClicks() {
-        val rows = listOf(
-            R.id.row1, R.id.row2, R.id.row3, R.id.row4, R.id.row5,
-            R.id.row6, R.id.row7, R.id.row8, R.id.row9, R.id.row10,
-            R.id.row_ud_1
-        )
-
-        rows.forEach { id ->
-            binding.root.findViewById<View>(id)?.setOnClickListener {
-                findNavController()
-                    .navigate(R.id.action_programRequirementsFragment_to_courseInfoFragment)
+    private fun wireRequirementClicks() {
+        CsRequirementsDb.allCourses().forEach { course ->
+            val row = binding.root.findViewById<View>(course.rowId) ?: return@forEach
+            row.setOnClickListener {
+                val args = bundleOf(
+                    "dept" to course.dept,
+                    "courseNumber" to course.number,
+                    "courseTitle" to course.label
+                )
+                findNavController().navigate(
+                    R.id.action_programRequirementsFragment_to_courseInfoFragment,
+                    args
+                )
             }
         }
     }

@@ -11,21 +11,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/prereqCheck"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            app:srcCompat="@drawable/baseline_check_box_24" />
+            android:checked="false" />
 
         <TextView
             android:id="@+id/prereqText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Course prequisites here"
+            android:text="Course prerequisites here"
             android:textColor="#000000" />
     </LinearLayout>
 
