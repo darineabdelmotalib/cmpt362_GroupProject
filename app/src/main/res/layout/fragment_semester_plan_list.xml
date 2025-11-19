@@ -28,15 +28,36 @@ ids from uicomponent_course_card_01 :
     android:layout_height="match_parent"
     android:padding="10dp">
 
-    <!--List view for semesters-->
-    <!--items will use component_semester_plan-->
-    <ListView
-        android:id="@+id/semester_plan_list"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="2.5dp"
-        android:layout_marginRight="2.5dp">
-    </ListView>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--DEBUG BUTTONS-->
+        <Button
+            android:id="@+id/debug_forward_courseinfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="debug_forward_courseinfo" />
+        <Button
+            android:id="@+id/debug_forward_scheduleview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="debug_forward_scheduleview" />
+        <!--END DEBUG BUTTONS-->
+
+        <!--List view for semesters-->
+        <!--items will use component_semester_plan-->
+        <ListView
+            android:id="@+id/semester_plan_listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.5dp"
+            android:layout_marginRight="2.5dp">
+        </ListView>
+    </LinearLayout>
+
+
 
 
 </ScrollView>

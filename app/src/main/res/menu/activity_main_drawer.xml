@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
-
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+
+        <!--profile -->
         <item
-            android:id="@+id/nav_profile"
-            android:title="Profile" />
+            android:id="@+id/profileFragment"
+            android:title="Profile"
+            android:icon="@drawable/ic_menu_camera" />
+
+        <!--sem plan-->
         <item
-            android:id="@+id/nav_semester_plan"
-            android:title="Semester Plan" />
+            android:id="@+id/semesterPlanListFragment"
+            android:title="Semester Plan"
+            android:icon="@drawable/ic_schedule_clock" />
+
+        <!--program reqs -->
         <item
-            android:id="@+id/nav_program_requirements"
-            android:title="Program Requirements" />
+            android:id="@+id/chooseProgramFragment"
+            android:title="Program Requirements"
+            android:icon="@drawable/ic_menu_slideshow" />
+
     </group>
 </menu>
