@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/topAppBar"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/top_appbar_color"
@@ -14,5 +14,5 @@
         app:menu="@menu/menu_program_requirements"
         app:titleTextColor="?attr/colorOnSurface"
         app:titleCentered="false"
-        android:paddingTop="8dp"/>
+        android:paddingTop="8dp" />
 </LinearLayout>

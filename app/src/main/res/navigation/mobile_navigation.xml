@@ -3,8 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/semesterPlanListFragment">
-    <!-- ////////////////////////////////////////////////// -->
+    app:startDestination="@id/profileFragment">
+
+    <!-- profile -->
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="darine_abdelmotalib.example.groupproject.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="darine_abdelmotalib.example.groupproject.ui.profile.EditProfileFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_profile">
+        <action
+            android:id="@+id/action_editProfileFragment_to_searchForProgramFragment"
+            app:destination="@id/searchForProgramFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchForProgramFragment"
+        android:name="darine_abdelmotalib.example.groupproject.ui.profile.SearchForProgramFragment"
+        android:label="Search for Program"
+        tools:layout="@layout/fragment_search_for_program">
+        <action
+            android:id="@+id/action_searchForProgramFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+
+    <!-- sem plan -->
     <fragment
         android:id="@+id/semesterPlanListFragment"
         android:name="darine_abdelmotalib.example.groupproject.ui.planning.SemesterPlanListFragment"
@@ -17,74 +52,43 @@
             android:id="@+id/action_semesterPlanListFragment_to_scheduleViewFragment"
             app:destination="@id/scheduleViewFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/courseInfoPlanFragment"
         android:name="darine_abdelmotalib.example.groupproject.ui.planning.CourseInfoPlanFragment"
         android:label="Course Info"
-        tools:layout="@layout/fragment_course_info_plan" >
+        tools:layout="@layout/fragment_course_info_plan">
         <action
             android:id="@+id/action_courseInfoPlanFragment_to_semesterPlanListFragment"
             app:destination="@id/semesterPlanListFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/scheduleViewFragment"
         android:name="darine_abdelmotalib.example.groupproject.ui.planning.ScheduleViewFragment"
         android:label="ScheduleViewFragment"
-        tools:layout="@layout/fragment_schedule_view" >
+        tools:layout="@layout/fragment_schedule_view">
         <action
             android:id="@+id/action_scheduleViewFragment_to_semesterPlanListFragment"
             app:destination="@id/semesterPlanListFragment" />
     </fragment>
-    <!-- ////////////////////////////////////////////////// -->
 
-    <!-- ////////////////////////////////////////////////// -->
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="darine_abdelmotalib.example.groupproject.ui.profile.ProfileFragment"
-        android:label="Profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/editProfileFragment"
-        android:name="darine_abdelmotalib.example.groupproject.ui.profile.EditProfileFragment"
-        android:label="Edit Profile"
-        tools:layout="@layout/fragment_edit_profile" >
-        <action
-            android:id="@+id/action_editProfileFragment_to_searchForProgramFragment"
-            app:destination="@id/searchForProgramFragment" />
-        <action
-            android:id="@+id/action_editProfileFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchForProgramFragment"
-        android:name="darine_abdelmotalib.example.groupproject.ui.profile.SearchForProgramFragment"
-        android:label="Search for Program"
-        tools:layout="@layout/fragment_search_for_program" >
-        <action
-            android:id="@+id/action_searchForProgramFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
-    </fragment>
-    <!-- ////////////////////////////////////////////////// -->
-
-    <!-- ////////////////////////////////////////////////// -->
+    <!-- program reqs -->
     <fragment
         android:id="@+id/chooseProgramFragment"
         android:name="darine_abdelmotalib.example.groupproject.ui.requirements.ChooseProgramFragment"
-        android:label="View Program Requirements"
-        tools:layout="@layout/fragment_choose_program" >
+        android:label="Choose Program"
+        tools:layout="@layout/fragment_choose_program">
         <action
             android:id="@+id/action_chooseProgramFragment_to_programRequirementsFragment"
             app:destination="@id/programRequirementsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/programRequirementsFragment"
         android:name="darine_abdelmotalib.example.groupproject.ui.requirements.ProgramRequirementsFragment"
         android:label="Program Requirements"
-        tools:layout="@layout/fragment_program_requirements" >
+        tools:layout="@layout/fragment_program_requirements">
         <action
             android:id="@+id/action_programRequirementsFragment_to_courseInfoFragment"
             app:destination="@id/courseInfoFragment" />
@@ -92,14 +96,15 @@
             android:id="@+id/action_programRequirementsFragment_to_chooseProgramFragment"
             app:destination="@id/chooseProgramFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/courseInfoFragment"
         android:name="darine_abdelmotalib.example.groupproject.ui.requirements.CourseInfoFragment"
         android:label="Course Info"
-        tools:layout="@layout/fragment_course_info" >
+        tools:layout="@layout/fragment_course_info">
         <action
             android:id="@+id/action_courseInfoFragment_to_programRequirementsFragment"
             app:destination="@id/programRequirementsFragment" />
     </fragment>
-    <!-- ////////////////////////////////////////////////// -->
+
 </navigation>
