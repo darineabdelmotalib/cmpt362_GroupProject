@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import darine_abdelmotalib.example.groupproject.R
+import androidx.navigation.fragment.findNavController
 
 class CourseInfoFragment : Fragment() {
     override fun onCreateView(
@@ -27,7 +28,7 @@ class CourseInfoFragment : Fragment() {
         val toolbar: Toolbar = view.findViewById(R.id.toolbar2)
 
         toolbar.setNavigationOnClickListener {
-            parentFragmentManager.popBackStack()
+            findNavController().popBackStack()
         }
 
         val prereqList = view.findViewById<LinearLayout>(R.id.prerequisitesList)

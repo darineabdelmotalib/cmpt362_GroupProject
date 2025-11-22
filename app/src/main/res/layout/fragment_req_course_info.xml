@@ -38,7 +38,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp">
 
-            <!-- Code + credits, e.g. CMPT 210 (3) -->
+            <!-- code +credit -->
             <TextView
                 android:id="@+id/codeCredits"
                 android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
                 android:textAppearance="?attr/textAppearanceTitleLarge"
                 android:text="@string/placeholder_code_credits" />
 
-            <!-- Long title -->
+            <!-- course title -->
             <TextView
                 android:id="@+id/longTitle"
                 android:layout_width="match_parent"
@@ -56,7 +56,7 @@
                 android:paddingTop="2dp"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
-            <!-- Course Info header -->
+            <!-- course Info header -->
             <TextView
                 android:id="@+id/courseInfoHeader"
                 android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp" />
 
-            <!-- Prerequisites header -->
+            <!-- prereq header -->
             <TextView
                 android:id="@+id/prerequisitesHeader"
                 android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
                 android:orientation="vertical"
                 android:paddingTop="8dp" />
 
-            <!-- Description header -->
+            <!-- description header -->
             <TextView
                 android:id="@+id/descriptionHeader"
                 android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?attr/colorOnSurface" />
 
-            <!-- Description text -->
+            <!-- description text -->
             <TextView
                 android:id="@+id/descriptionText"
                 android:layout_width="match_parent"

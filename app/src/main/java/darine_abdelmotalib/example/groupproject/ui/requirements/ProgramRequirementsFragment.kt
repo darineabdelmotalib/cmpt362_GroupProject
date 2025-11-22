@@ -15,8 +15,9 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.checkbox.MaterialCheckBox
 import darine_abdelmotalib.example.groupproject.R
 import darine_abdelmotalib.example.groupproject.data.db.CsRequirementsDb
-import darine_abdelmotalib.example.groupproject.data.db.RequirementGroup
 import darine_abdelmotalib.example.groupproject.data.db.RequirementCourse
+import darine_abdelmotalib.example.groupproject.data.db.RequirementGroup
+import darine_abdelmotalib.example.groupproject.data.prefs.CoursePrefs
 import darine_abdelmotalib.example.groupproject.databinding.FragmentProgramRequirementsBinding
 
 class ProgramRequirementsFragment : Fragment() {
@@ -24,7 +25,7 @@ class ProgramRequirementsFragment : Fragment() {
     private var _binding: FragmentProgramRequirementsBinding? = null
     private val binding get() = _binding!!
 
-    private var lowerExpanded = true
+    private var lowerExpanded = false
     private var upperExpanded = false
 
     override fun onCreateView(
@@ -37,18 +38,14 @@ class ProgramRequirementsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.debugForward.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_programRequirementsFragment_to_courseInfoFragment
-            )
-        }
-        binding.debugBack.setOnClickListener { findNavController().popBackStack() }
-
         setupLowerExpand()
         setupUpperExpand()
+
         fillLower()
         tintLower()
+
         renderUpper()
+        refreshUpper()
     }
 
     private fun setupLowerExpand() {
@@ -70,6 +67,7 @@ class ProgramRequirementsFragment : Fragment() {
     private fun updateLower() {
         binding.lowerContent.visibility =
             if (lowerExpanded) View.VISIBLE else View.GONE
+
         binding.lowerExpandIcon.setImageResource(
             if (lowerExpanded) R.drawable.ic_expand_less_24
             else R.drawable.ic_expand_more_24
@@ -79,18 +77,32 @@ class ProgramRequirementsFragment : Fragment() {
     private fun updateUpper() {
         binding.upperDynamicContainer.visibility =
             if (upperExpanded) View.VISIBLE else View.GONE
+
         binding.upperExpandIcon.setImageResource(
             if (upperExpanded) R.drawable.ic_expand_less_24
             else R.drawable.ic_expand_more_24
         )
     }
 
+    //lower division
     private fun fillLower() {
         CsRequirementsDb.lowerDivision.forEach { course ->
             val row = binding.root.findViewById<View>(course.rowId) ?: return@forEach
             val tv = row.findViewById<TextView>(R.id.text)
+            val box = row.findViewById<MaterialCheckBox>(R.id.check)
+
             tv.text = course.label
-            row.setOnClickListener { openCourse(course) }
+
+            val key = "${course.dept}_${course.number}".lowercase()
+            box.isChecked = CoursePrefs.isCourseCompleted(requireContext(), key)
+
+            box.setOnCheckedChangeListener { _, checked ->
+                CoursePrefs.setCourseCompleted(requireContext(), key, checked)
+            }
+
+            //disabled for now
+           // row.setOnClickListener { openCourse(course) }
+            row.setOnClickListener { }
         }
     }
 
@@ -105,13 +117,16 @@ class ProgramRequirementsFragment : Fragment() {
 
         CsRequirementsDb.lowerDivision.forEach { course ->
             val row = binding.root.findViewById<View>(course.rowId) ?: return@forEach
-            row.findViewById<MaterialCheckBox>(R.id.check)?.buttonTintList = tint
+            val box = row.findViewById<MaterialCheckBox>(R.id.check)
+            box.buttonTintList = tint
         }
     }
 
+    //upper division
     private fun renderUpper() {
         val container = binding.upperDynamicContainer
         container.removeAllViews()
+
         CsRequirementsDb.upperGroups.forEach { group ->
             when (group) {
                 is RequirementGroup.CourseList -> addCourseList(container, group)
@@ -121,15 +136,12 @@ class ProgramRequirementsFragment : Fragment() {
     }
 
     private fun addCourseList(parent: LinearLayout, group: RequirementGroup.CourseList) {
-        val header = layoutInflater.inflate(
-            R.layout.requirement_group_header,
-            parent,
-            false
-        )
+        val header = layoutInflater.inflate(R.layout.requirement_group_header, parent, false)
+
         val title = header.findViewById<TextView>(R.id.reqGroupTitle)
         val icon = header.findViewById<ImageView>(R.id.reqGroupIcon)
-
         title.text = group.title
+
         var expanded = false
 
         val inner = LinearLayout(requireContext()).apply {
@@ -139,7 +151,7 @@ class ProgramRequirementsFragment : Fragment() {
         }
 
         group.courses.forEach { course ->
-            inner.addView(createCourseRow(course))
+            inner.addView(createCourseRow(inner, course))
         }
 
         header.setOnClickListener {
@@ -156,15 +168,11 @@ class ProgramRequirementsFragment : Fragment() {
     }
 
     private fun addOrGroup(parent: LinearLayout, group: RequirementGroup.OrGroup) {
-        val header = layoutInflater.inflate(
-            R.layout.requirement_group_header,
-            parent,
-            false
-        )
+        val header = layoutInflater.inflate(R.layout.requirement_group_header, parent, false)
         val title = header.findViewById<TextView>(R.id.reqGroupTitle)
         val icon = header.findViewById<ImageView>(R.id.reqGroupIcon)
-
         title.text = group.title
+
         var expanded = false
 
         val outer = LinearLayout(requireContext()).apply {
@@ -175,14 +183,13 @@ class ProgramRequirementsFragment : Fragment() {
         group.options.forEach { option ->
             val subHeader = TextView(requireContext()).apply {
                 text = option.title
-                setPadding(0, 12, 0, 6)
                 textSize = 15f
-                setTextColor(requireContext().getColor(R.color.black))
+                setPadding(0, 12, 0, 8)
             }
             outer.addView(subHeader)
 
             option.courses.forEach { course ->
-                outer.addView(createCourseRow(course))
+                outer.addView(createCourseRow(outer, course))
             }
         }
 
@@ -199,12 +206,19 @@ class ProgramRequirementsFragment : Fragment() {
         parent.addView(outer)
     }
 
-    private fun createCourseRow(course: RequirementCourse): View {
-        val row = layoutInflater.inflate(R.layout.row_requirement_red, null, false)
+    private fun createCourseRow(parent: LinearLayout, course: RequirementCourse): View {
+        val row = layoutInflater.inflate(
+            R.layout.row_requirement_red,
+            parent,
+            false
+        )
+
         val tv = row.findViewById<TextView>(R.id.text)
+        val box = row.findViewById<MaterialCheckBox>(R.id.check)
+
         tv.text = course.label
 
-        val box = row.findViewById<MaterialCheckBox>(R.id.check)
+        //red tint
         val states = arrayOf(
             intArrayOf(android.R.attr.state_checked),
             intArrayOf()
@@ -213,10 +227,22 @@ class ProgramRequirementsFragment : Fragment() {
         val gray = Color.parseColor("#777777")
         box.buttonTintList = ColorStateList(states, intArrayOf(red, gray))
 
-        row.setOnClickListener { openCourse(course) }
+        //load saved prefs
+        val key = "${course.dept}_${course.number}".lowercase()
+        box.setOnCheckedChangeListener(null)
+        box.isChecked = CoursePrefs.isCourseCompleted(requireContext(), key)
+
+        box.setOnCheckedChangeListener { _, checked ->
+            CoursePrefs.setCourseCompleted(requireContext(), key, checked)
+        }
+
+        //navigation disabled for now
+        row.setOnClickListener { }
+
         return row
     }
 
+    //doesn't work
     private fun openCourse(course: RequirementCourse) {
         val args = bundleOf(
             "dept" to course.dept,
@@ -227,6 +253,28 @@ class ProgramRequirementsFragment : Fragment() {
             R.id.action_programRequirementsFragment_to_courseInfoFragment,
             args
         )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshLower()
+        refreshUpper()
+    }
+
+    private fun refreshLower() {
+        CsRequirementsDb.lowerDivision.forEach { course ->
+            val row = binding.root.findViewById<View>(course.rowId) ?: return@forEach
+            val box = row.findViewById<MaterialCheckBox>(R.id.check)
+            val key = "${course.dept}_${course.number}".lowercase()
+            box.isChecked = CoursePrefs.isCourseCompleted(requireContext(), key)
+        }
+    }
+
+    private fun refreshUpper() {
+        val wasExpanded = upperExpanded
+        renderUpper()
+        binding.upperDynamicContainer.visibility =
+            if (wasExpanded) View.VISIBLE else View.GONE
     }
 
     override fun onDestroyView() {

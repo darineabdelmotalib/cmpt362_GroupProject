@@ -5,29 +5,44 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import darine_abdelmotalib.example.groupproject.R
 import darine_abdelmotalib.example.groupproject.data.api.SfuCourseApi
-import darine_abdelmotalib.example.groupproject.databinding.FragmentCourseInfoBinding
+import darine_abdelmotalib.example.groupproject.databinding.FragmentReqCourseInfoBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CourseInfoFragment : Fragment() {
 
-    private var _binding: FragmentCourseInfoBinding? = null
+    private var _binding: FragmentReqCourseInfoBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var toolbar: Toolbar
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCourseInfoBinding.inflate(inflater, container, false)
+        _binding = FragmentReqCourseInfoBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        toolbar = binding.topAppBar.toolbar
+
+        // Back button
+        toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        // Debug buttons (optional)
         binding.debugForward.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_courseInfoFragment_to_programRequirementsFragment)
@@ -41,66 +56,63 @@ class CourseInfoFragment : Fragment() {
         val titleFromArgs = arguments?.getString("courseTitle") ?: ""
 
         binding.codeCredits.text = "${dept.uppercase()} $number"
-        binding.longTitle.text =
-            titleFromArgs.ifBlank { getString(R.string.placeholder_course_long_title) }
-        binding.descriptionText.text = "Loading from SFU API…"
+        binding.longTitle.text = titleFromArgs
+        binding.descriptionText.text = "Loading course info..."
 
-        binding.topAppBar.toolbar.title = "${dept.uppercase()} $number"
+        toolbar.title = "${dept.uppercase()} $number"
 
         loadFromApi(dept, number)
     }
 
     private fun loadFromApi(dept: String, number: String) {
-        Thread {
+        CoroutineScope(Dispatchers.IO).launch {
+
             val outline = try {
                 SfuCourseApi.fetchCourseOutline(dept, number)
             } catch (_: Exception) {
                 null
             }
 
-            if (!isAdded) return@Thread
+            if (!isAdded) return@launch
 
-            requireActivity().runOnUiThread {
+            withContext(Dispatchers.Main) {
                 if (outline == null) {
                     binding.descriptionText.text =
-                        getString(R.string.placeholder_description) +
-                                "\n\n(Unable to load SFU API data for $dept $number.)"
-                    return@runOnUiThread
+                        "Unable to load course info from SFU API for $dept $number."
+                    return@withContext
                 }
 
-                val unitsPart = outline.units?.let { " ($it)" } ?: ""
+                val unitsPart = outline.units?.let { " (${outline.units})" } ?: ""
                 binding.codeCredits.text = outline.code + unitsPart
-                binding.longTitle.text = outline.title
-                binding.topAppBar.toolbar.title = outline.code
 
-                setupPrereqCheckboxes(outline.prerequisites)
+                binding.longTitle.text =
+                    outline.title.ifBlank { binding.longTitle.text.toString() }
+
+                toolbar.title = outline.code
+
+                setupPrereqRows(outline.prerequisites)
+
                 binding.descriptionText.text =
-                    outline.description.ifBlank {
-                        getString(R.string.placeholder_description)
-                    }
+                    outline.description.ifBlank { "No description available." }
             }
-        }.start()
+        }
     }
 
-    /** Build one checkbox row per course in the prereq string. */
-    private fun setupPrereqCheckboxes(prereqRaw: String?) {
+    private fun setupPrereqRows(prereqRaw: String?) {
         val container = binding.prereqContainer
         container.removeAllViews()
 
-        if (prereqRaw.isNullOrBlank()) {
-            return
-        }
+        if (prereqRaw.isNullOrBlank()) return
 
-        val courseRegex = Regex("""[A-Z]{3,4}\s\d{3}[A-Z]?""")
-        val matches = courseRegex.findAll(prereqRaw).map { it.value }.toList()
+        val regex = Regex("""[A-Z]{3,4}\s\d{3}[A-Z]?""")
+        val matches = regex.findAll(prereqRaw).map { it.value }.toList()
 
         if (matches.isEmpty()) {
             addPrereqRow(prereqRaw)
-            return
-        }
-
-        matches.forEach { courseCode ->
-            addPrereqRow(courseCode)
+        } else {
+            matches.forEach { code ->
+                addPrereqRow(code)
+            }
         }
     }
 
@@ -111,9 +123,7 @@ class CourseInfoFragment : Fragment() {
             false
         )
 
-        val tv = row.findViewById<TextView>(R.id.prereqText)
-        tv.text = text
-
+        row.findViewById<TextView>(R.id.prereqText).text = text
         binding.prereqContainer.addView(row)
     }
 
