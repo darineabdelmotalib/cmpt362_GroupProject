@@ -114,7 +114,6 @@ object CsRequirementsDb {
                     allCourses.addAll(group.courses)
                 }
                 is RequirementGroup.OrGroup -> {
-                    // For "Or" groups, we grab ALL potential courses to count them as possible XP
                     group.options.forEach { option ->
                         allCourses.addAll(option.courses)
                     }
@@ -124,7 +123,6 @@ object CsRequirementsDb {
 
         upperGroups.forEach { extractFromGroup(it) }
 
-        // Remove duplicates (e.g. if a course is listed in two different requirement options)
         return allCourses.distinctBy { it.dept.lowercase() + it.number.lowercase() }
     }
 }

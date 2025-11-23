@@ -37,6 +37,10 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
         setupCourseProgressBar()
     }
 
@@ -44,7 +48,7 @@ class ProfileFragment : Fragment() {
         val allUniqueCourses = CsRequirementsDb.getAllUniqueCourses()
         val totalXp = allUniqueCourses.size
 
-        val completedXp = UserProgressDb.getCompletedCount()
+        val completedXp = UserProgressDb.getCompletedCount(requireContext())
 
         val progressPercentage = if (totalXp > 0) {
             ((completedXp.toDouble() / totalXp.toDouble()) * 100).toInt()

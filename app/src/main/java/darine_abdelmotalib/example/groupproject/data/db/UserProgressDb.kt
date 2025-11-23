@@ -1,35 +1,39 @@
 package darine_abdelmotalib.example.groupproject.data.db
 
+import android.content.Context
+import darine_abdelmotalib.example.groupproject.data.prefs.CoursePrefs
+
 object UserProgressDb {
 
     private val completedCourseKeys = mutableSetOf<String>()
-
-    //Temp course progress
-    init {
-        markCourseCompleted("cmpt", "105w")
-        markCourseCompleted("cmpt", "120")
-        markCourseCompleted("cmpt", "125")
-        markCourseCompleted("macm", "101")
-        markCourseCompleted("cmpt", "307")
-    }
 
     private fun makeKey(dept: String, number: String): String {
         return "${dept.lowercase()}-${number.lowercase()}"
     }
 
-    fun markCourseCompleted(dept: String, number: String) {
-        completedCourseKeys.add(makeKey(dept, number))
+    fun markCourseCompleted(context: Context, dept: String, number: String) {
+        val key = makeKey(dept, number)
+        CoursePrefs.setCourseCompleted(context, key, true)
     }
 
-    fun markCourseIncomplete(dept: String, number: String) {
-        completedCourseKeys.remove(makeKey(dept, number))
+    fun markCourseIncomplete(context: Context, dept: String, number: String) {
+        val key = makeKey(dept, number)
+        CoursePrefs.setCourseCompleted(context, key, false)
     }
 
-    fun isCourseCompleted(dept: String, number: String): Boolean {
-        return completedCourseKeys.contains(makeKey(dept, number))
+    fun isCourseCompleted(context: Context, dept: String, number: String): Boolean {
+        val key = makeKey(dept, number)
+        return CoursePrefs.isCourseCompleted(context, key)
     }
 
-    fun getCompletedCount(): Int {
-        return completedCourseKeys.size
+    fun getCompletedCount(context: Context): Int {
+        val allCourses = CsRequirementsDb.getAllUniqueCourses()
+        var count = 0
+        for (course in allCourses) {
+            if (isCourseCompleted(context, course.dept, course.number)) {
+                count++
+            }
+        }
+        return count
     }
 }
