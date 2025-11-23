@@ -90,8 +90,11 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="User's Major"
-                android:inputType="text"
-                android:paddingStart="10dp" />
+                android:focusable="false"
+                android:clickable="true"
+                android:longClickable="false"
+                android:inputType="none"
+                android:paddingStart="10dp"/>
     
             <ImageButton
                 android:id="@+id/button_change_major"
@@ -120,8 +123,11 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="Add a major"
-                android:inputType="text"
-                android:paddingStart="10dp" />
+                android:focusable="false"
+                android:clickable="true"
+                android:longClickable="false"
+                android:inputType="none"
+                android:paddingStart="10dp"/>
     
             <ImageButton
                 android:id="@+id/button_add_major"
@@ -158,8 +164,11 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="Add a minor"
-                android:inputType="text"
-                android:paddingStart="10dp" />
+                android:focusable="false"
+                android:clickable="true"
+                android:longClickable="false"
+                android:inputType="none"
+                android:paddingStart="10dp"/>
     
             <ImageButton
                 android:id="@+id/button_add_minor"

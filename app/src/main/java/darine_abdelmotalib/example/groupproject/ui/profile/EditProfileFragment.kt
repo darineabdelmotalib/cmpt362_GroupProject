@@ -47,17 +47,14 @@ class EditProfileFragment : Fragment() {
         binding.inputChangeMajor.setText(viewModel.major.value)
         binding.inputAddMinor.setText(viewModel.minor.value)
 
-        binding.buttonChangeMajor.setOnClickListener {
-            navigateToSearchForProgram("major")
-        }
+        binding.buttonChangeMajor.setOnClickListener { navigateToSearchForProgram("major") }
+        binding.inputChangeMajor.setOnClickListener { navigateToSearchForProgram("major") }
 
-        binding.buttonAddMajor.setOnClickListener {
-            navigateToSearchForProgram("major")
-        }
+        binding.buttonAddMajor.setOnClickListener { navigateToSearchForProgram("major") }
+        binding.inputAddMajor.setOnClickListener { navigateToSearchForProgram("major") }
 
-        binding.buttonAddMinor.setOnClickListener {
-            navigateToSearchForProgram("minor")
-        }
+        binding.buttonAddMinor.setOnClickListener { navigateToSearchForProgram("minor") }
+        binding.inputAddMinor.setOnClickListener { navigateToSearchForProgram("minor") }
 
         binding.buttonSaveChanges.setOnClickListener {
             val newName = binding.userNameInput.text.toString()
@@ -68,11 +65,9 @@ class EditProfileFragment : Fragment() {
 
             Toast.makeText(context, "Profile Saved!", Toast.LENGTH_SHORT).show()
 
-            // Go back to Profile Page
             findNavController().popBackStack()
         }
 
-        // 3. Handle "Cancel"
         binding.buttonCancel.setOnClickListener {
             findNavController().popBackStack()
         }
