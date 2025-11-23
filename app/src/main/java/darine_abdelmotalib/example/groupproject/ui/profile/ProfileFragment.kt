@@ -58,6 +58,7 @@ class ProfileFragment : Fragment() {
 
         binding.profileProgressBar.max = 100
         binding.profileProgressBar.progress = progressPercentage
+        binding.textProgressPercentage.text = "$progressPercentage% Complete"
     }
 
     override fun onDestroyView() {
