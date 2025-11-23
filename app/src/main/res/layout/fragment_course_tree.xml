@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.otaliastudios.zoom.ZoomLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/zoomLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical|horizontal"
+    app:alignment="center"
+    app:animationDuration="280"
+    app:flingEnabled="true"
+    app:hasClickableChildren="false"
+    app:horizontalPanEnabled="true"
+    app:maxZoom="5"
+    app:maxZoomType="zoom"
+    app:minZoom="0.7"
+    app:minZoomType="zoom"
+    app:oneFingerScrollEnabled="true"
+    app:overPinchable="true"
+    app:overScrollHorizontal="true"
+    app:overScrollVertical="true"
+    app:scrollEnabled="true"
+    app:threeFingersScrollEnabled="true"
+    app:transformation="centerInside"
+    app:transformationGravity="auto"
+    app:twoFingersScrollEnabled="true"
+    app:verticalPanEnabled="true"
+    app:zoomEnabled="true">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</com.otaliastudios.zoom.ZoomLayout>

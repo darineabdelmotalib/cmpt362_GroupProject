@@ -42,7 +42,8 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.profileFragment,
                 R.id.semesterPlanListFragment,
-                R.id.chooseProgramFragment
+                R.id.chooseProgramFragment,
+                R.id.courseTreeFragment
             ),
             drawerLayout
         )

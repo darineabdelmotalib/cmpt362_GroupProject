@@ -107,4 +107,12 @@
             app:destination="@id/programRequirementsFragment" />
     </fragment>
 
+    <!-- course tree -->
+    <fragment
+        android:id="@+id/courseTreeFragment"
+        android:name="darine_abdelmotalib.example.groupproject.ui.tree.CourseTreeFragment"
+        android:label="Course Tree"
+        tools:layout="@layout/fragment_course_tree">
+    </fragment>
+
 </navigation>

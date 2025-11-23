@@ -21,5 +21,11 @@
             android:title="Program Requirements"
             android:icon="@drawable/ic_menu_slideshow" />
 
+        <!--course tree -->
+        <item
+            android:id="@+id/courseTreeFragment"
+            android:title="Course Tree"
+            android:icon="@drawable/baseline_account_tree_24" />
+
     </group>
 </menu>
