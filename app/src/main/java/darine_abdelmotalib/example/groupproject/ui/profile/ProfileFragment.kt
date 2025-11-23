@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import darine_abdelmotalib.example.groupproject.R
 import darine_abdelmotalib.example.groupproject.databinding.FragmentProfileBinding
+import darine_abdelmotalib.example.groupproject.data.db.CsRequirementsDb
+import darine_abdelmotalib.example.groupproject.data.db.UserProgressDb
 
 class ProfileFragment : Fragment() {
 
@@ -30,6 +32,28 @@ class ProfileFragment : Fragment() {
         /* -- END DEBUG BUTTONS -- */
 
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupCourseProgressBar()
+    }
+
+    private fun setupCourseProgressBar() {
+        val allUniqueCourses = CsRequirementsDb.getAllUniqueCourses()
+        val totalXp = allUniqueCourses.size
+
+        val completedXp = UserProgressDb.getCompletedCount()
+
+        val progressPercentage = if (totalXp > 0) {
+            ((completedXp.toDouble() / totalXp.toDouble()) * 100).toInt()
+        } else {
+            0
+        }
+
+        binding.profileProgressBar.max = 100
+        binding.profileProgressBar.progress = progressPercentage
     }
 
     override fun onDestroyView() {

@@ -104,4 +104,27 @@ object CsRequirementsDb {
         softEngReq,
         capstone
     )
+
+    fun getAllUniqueCourses(): List<RequirementCourse> {
+        val allCourses = lowerDivision.toMutableList()
+
+        fun extractFromGroup(group: RequirementGroup) {
+            when (group) {
+                is RequirementGroup.CourseList -> {
+                    allCourses.addAll(group.courses)
+                }
+                is RequirementGroup.OrGroup -> {
+                    // For "Or" groups, we grab ALL potential courses to count them as possible XP
+                    group.options.forEach { option ->
+                        allCourses.addAll(option.courses)
+                    }
+                }
+            }
+        }
+
+        upperGroups.forEach { extractFromGroup(it) }
+
+        // Remove duplicates (e.g. if a course is listed in two different requirement options)
+        return allCourses.distinctBy { it.dept.lowercase() + it.number.lowercase() }
+    }
 }
