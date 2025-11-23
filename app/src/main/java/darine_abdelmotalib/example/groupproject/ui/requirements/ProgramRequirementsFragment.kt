@@ -19,6 +19,7 @@ import darine_abdelmotalib.example.groupproject.data.db.RequirementCourse
 import darine_abdelmotalib.example.groupproject.data.db.RequirementGroup
 import darine_abdelmotalib.example.groupproject.data.prefs.CoursePrefs
 import darine_abdelmotalib.example.groupproject.databinding.FragmentProgramRequirementsBinding
+import darine_abdelmotalib.example.groupproject.data.db.UserProgressDb
 
 class ProgramRequirementsFragment : Fragment() {
 
@@ -93,15 +94,19 @@ class ProgramRequirementsFragment : Fragment() {
 
             tv.text = course.label
 
-            val key = "${course.dept}_${course.number}".lowercase()
-            box.isChecked = CoursePrefs.isCourseCompleted(requireContext(), key)
+            box.setOnCheckedChangeListener(null)
+            box.isChecked = UserProgressDb.isCourseCompleted(requireContext(), course.dept, course.number)
 
             box.setOnCheckedChangeListener { _, checked ->
-                CoursePrefs.setCourseCompleted(requireContext(), key, checked)
+                if (checked) {
+                    UserProgressDb.markCourseCompleted(requireContext(), course.dept, course.number)
+                } else {
+                    UserProgressDb.markCourseIncomplete(requireContext(), course.dept, course.number)
+                }
             }
 
-            //disabled for now
-           // row.setOnClickListener { openCourse(course) }
+                //disabled for now
+                // row.setOnClickListener { openCourse(course) }
             row.setOnClickListener { }
         }
     }
@@ -227,13 +232,15 @@ class ProgramRequirementsFragment : Fragment() {
         val gray = Color.parseColor("#777777")
         box.buttonTintList = ColorStateList(states, intArrayOf(red, gray))
 
-        //load saved prefs
-        val key = "${course.dept}_${course.number}".lowercase()
         box.setOnCheckedChangeListener(null)
-        box.isChecked = CoursePrefs.isCourseCompleted(requireContext(), key)
+        box.isChecked = UserProgressDb.isCourseCompleted(requireContext(), course.dept, course.number)
 
         box.setOnCheckedChangeListener { _, checked ->
-            CoursePrefs.setCourseCompleted(requireContext(), key, checked)
+            if (checked) {
+                UserProgressDb.markCourseCompleted(requireContext(), course.dept, course.number)
+            } else {
+                UserProgressDb.markCourseIncomplete(requireContext(), course.dept, course.number)
+            }
         }
 
         //navigation disabled for now
@@ -265,8 +272,16 @@ class ProgramRequirementsFragment : Fragment() {
         CsRequirementsDb.lowerDivision.forEach { course ->
             val row = binding.root.findViewById<View>(course.rowId) ?: return@forEach
             val box = row.findViewById<MaterialCheckBox>(R.id.check)
-            val key = "${course.dept}_${course.number}".lowercase()
-            box.isChecked = CoursePrefs.isCourseCompleted(requireContext(), key)
+
+            box.setOnCheckedChangeListener(null)
+            box.isChecked = UserProgressDb.isCourseCompleted(requireContext(), course.dept, course.number)
+            box.setOnCheckedChangeListener { _, checked ->
+                if (checked) {
+                    UserProgressDb.markCourseCompleted(requireContext(), course.dept, course.number)
+                } else {
+                    UserProgressDb.markCourseIncomplete(requireContext(), course.dept, course.number)
+                }
+            }
         }
     }
 
