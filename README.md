@@ -1,6 +1,6 @@
 <h1>SFU Course Planner</h1>
 
-<p>A mobile application designed to help SFU students plan their degrees, track program requirements, and visualize prerequisite pathways. Developed for <strong>CMPT 362 – Mobile Application Development</strong>.</p>
+<p>A mobile application designed to help SFU students plan their degrees, track program requirements, and visualize prerequisite pathways. Developed for <strong>CMPT 362, Mobile Application Development</strong>.</p>
 
 <h2>Overview</h2>
 
