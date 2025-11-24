@@ -82,6 +82,14 @@ app/
   <li>Course ratings (external + in-app)</li>
 </ul>
 
+## Libraries Used
+
+- **GraphView (oss-bandb)**
+  - Used for rendering the course tree graph
+  - https://github.com/oss-bandb/GraphView
+- **ZoomLayout (Otalia Studios)**
+  - Used to allow for zooming and panning of the course tree graph
+  - https://github.com/natario1/ZoomLayout
 
 <h2>Team</h2>
 
