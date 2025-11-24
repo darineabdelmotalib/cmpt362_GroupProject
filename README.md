@@ -1,91 +1,95 @@
-SFU Course Planner
+<h1>SFU Course Planner</h1>
 
-A mobile application designed to help SFU students plan their degrees, track program requirements, and visualize course dependencies. Built as part of CMPT 362 – Mobile Application Development.
+<p>A mobile application designed to help SFU students plan their degrees, track program requirements, and visualize prerequisite pathways. Developed for <strong>CMPT 362 – Mobile Application Development</strong>.</p>
 
-Overview
+<h2>Overview</h2>
 
-The SFU Course Planner provides students with a structured way to:
+<p>The SFU Course Planner provides a structured and interactive way for students to:</p>
 
-Track and complete program requirements
+<ul>
+  <li>Track and complete program requirements</li>
+  <li>View degree progress</li>
+  <li>Search for majors and minors</li>
+  <li>Explore detailed course information</li>
+  <li>Visualize prerequisite chains with an interactive Course Tree</li>
+  <li>Navigate efficiently with a drawer-based interface</li>
+</ul>
 
-View progress toward degree completion
+<h2>Core Features</h2>
 
-Explore detailed course information
+<ul>
+  <li>Program Requirements Checklist</li>
+  <li>Profile Progress Tracking</li>
+  <li>Semester Course Details</li>
+  <li>Program Search &amp; Selection</li>
+  <li>Interactive Course Tree</li>
+  <li>Persistent Database Storage</li>
+  <li>Navigation Drawer</li>
+</ul>
 
-Understand prerequisite paths through an interactive course tree
+<h2>Project Structure</h2>
 
-Navigate quickly between major sections with a clean UI
+<pre>
+app/
+ ├── manifests/
+ ├── java/com/.../courseplanner/
+ │    ├── activities/
+ │    ├── adapters/
+ │    ├── data/
+ │    │     ├── AppDatabase.kt
+ │    │     ├── CourseDao.kt
+ │    │     ├── RequirementDao.kt
+ │    │     └── entities/
+ │    ├── models/
+ │    ├── ui/
+ │    └── utils/
+ └── res/
+      ├── layout/
+      ├── drawable/
+      ├── values/
+      └── menu/
+</pre>
 
-Core Features
+<h2>Threading Model</h2>
 
-Program Requirements Checklist
-Interactive list of required courses with permanent saving of completed items.
+<h3>UI Thread</h3>
+<ul>
+  <li>UI rendering</li>
+  <li>Navigation</li>
+  <li>Progress bar updates</li>
+  <li>Course Tree visualization</li>
+  <li>Checklist interactions</li>
+</ul>
 
-Profile Progress Tracking
-Displays overall program progress based on completed requirements.
+<h3>Background Thread</h3>
+<ul>
+  <li>Database read/write operations</li>
+  <li>Loading requirement states</li>
+  <li>Loading Course Tree data</li>
+  <li>Scheduling computations (future)</li>
+</ul>
 
-Semester Course Details
-Provides lecture, lab, instructor, and scheduling information for selected semesters.
+<h2>Future Enhancements</h2>
 
-Program Search & Selection
-Searchable list of majors and minors for accurate setup.
+<ul>
+  <li>Color-coded course connections</li>
+  <li>"Unavailable This Semester" indicator boxes</li>
+  <li>Interactive Maze Timeline</li>
+  <li>Dark Mode</li>
+  <li>Help &amp; Info section</li>
+  <li>Smoother UI transitions</li>
+  <li>Course notes and tagging</li>
+  <li>Course ratings (external + in-app)</li>
+</ul>
 
-Interactive Course Tree
-Dynamic visualization of all course prerequisites and dependencies.
 
-Persistent Database Storage
-Supports requirement tracking, course data, and future scheduling features.
+<h2>Team</h2>
 
-Navigation Drawer
-Access Profile, Program Requirements, Semester Plan, and Course Tree from anywhere in the app.
+<ul>
+  <li>Angela Liong – Course Tree Visualization</li>
+  <li>Cas Sugihwo – App Structure & Navigation</li>
+  <li>Darine Abdelmotalib – Program Requirements & Database</li>
+  <li>Elaiza Chavez – Profile Progress Bar</li>
+  <li>Rana Hoshyarsadeghi – Presentation, website updates, feature planning</li>
+</ul>
 
-Project Structure
-
-Profile Section: User details, program selection, progress overview
-
-Program Requirements: Checklist and persistent tracking
-
-Semester Plan: Detailed course information per term
-
-Course Tree: Visualization of prerequisite relationships
-
-Navigation: Drawer-based app-wide navigation system
-
-Threading Model
-UI Thread
-
-Handles rendering, navigation, progress updates, and interface interactions.
-
-Background Thread
-
-Handles database reads/writes, loading saved data, course tree data processing, and scheduling-related operations.
-
-Future Enhancements
-
-Color-coded course connections in the Course Tree
-
-Boxes indicating courses not offered in the current semester
-
-Interactive Maze Timeline for visualizing academic progress
-
-Dark Mode
-
-Help and Info section
-
-Improved UI transitions and layout polish
-
-Course notes and tagging
-
-Course ratings (external data and in-app ratings)
-
-Team
-
-Angela Liong – Course Tree Visualization
-
-Cas Sugihwo – App Structure & Navigation
-
-Darine Abdelmotalib – Program Requirements & Database
-
-Elaiza Chavez – Profile Progress Bar
-
-Rana Hoshyarsadeghi – Presentation, website, and feature planning
