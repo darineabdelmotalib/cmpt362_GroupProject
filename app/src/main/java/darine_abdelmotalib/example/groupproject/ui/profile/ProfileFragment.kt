@@ -29,6 +29,10 @@ class ProfileFragment : Fragment() {
         binding.debugForward.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
         }
+
+        binding.profileProgressBar.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_courseMazeFragment)
+        }
         /* -- END DEBUG BUTTONS -- */
 
         return root

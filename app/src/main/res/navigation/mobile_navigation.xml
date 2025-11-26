@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_courseMazeFragment"
+            app:destination="@id/courseMazeFragment" />
     </fragment>
 
     <fragment
@@ -114,5 +117,12 @@
         android:label="Course Tree"
         tools:layout="@layout/fragment_course_tree">
     </fragment>
+
+    <!-- maze -->
+    <fragment
+        android:id="@+id/courseMazeFragment"
+        android:name="darine_abdelmotalib.example.groupproject.ui.maze.CourseMazeFragment"
+        android:label="Course Maze"
+        tools:layout="@layout/fragment_course_maze" />
 
 </navigation>
