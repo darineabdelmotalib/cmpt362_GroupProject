@@ -42,7 +42,7 @@
     <!-- sem plan -->
     <fragment
         android:id="@+id/semesterPlanListFragment"
-        android:name="darine_abdelmotalib.example.groupproject.ui.planning.SemesterPlanListFragment"
+        android:name="darine_abdelmotalib.example.groupproject.ui.planning.semester.SemesterPlanListFragment"
         android:label="Semester Plan"
         tools:layout="@layout/fragment_semester_plan_list">
         <action

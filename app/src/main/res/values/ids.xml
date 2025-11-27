@@ -17,6 +17,8 @@
     <!--semester plan-->
     <item name="semester_term" type="id"/> <!--Term ("Fall 2025")-->
     <item name="semester_total_credits" type="id"/> <!--Units ("9 units")-->
+    <item name="semester_list" type="id"/> <!--Recycler view for semester list-->
+    <item name="semester_course_list" type="id"/> <!--Recycler view for course list within each semester-->
     <!--/semester plan-->
 
 </resources>
