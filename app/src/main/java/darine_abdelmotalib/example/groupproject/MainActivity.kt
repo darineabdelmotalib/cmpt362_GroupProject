@@ -1,6 +1,7 @@
 package darine_abdelmotalib.example.groupproject
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -57,12 +58,17 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    /*In MainActivity.kt*/
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
         return when {
             item.title == "Edit Profile" -> {
                 navController.navigate(R.id.editProfileFragment)
+                true
+            }
+            item.itemId == R.id.placeholder_action -> {
+                Log.d("SemesterPlanListFragment", "menu item selected")
                 true
             }
             else -> super.onOptionsItemSelected(item)

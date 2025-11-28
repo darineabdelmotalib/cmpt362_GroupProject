@@ -6,6 +6,7 @@ ids:
 (defined in ids.xml)
     semester_term = Term ("Fall 2025")
     semester_total_credits = Units ("9 units")
+    semester_course_list = id for the recycler view that contains courses
 (not defined in ids.xml)
     button_view_schedule = View Schedule Button
     button_edit_schedule = Edit Schedule Button
@@ -118,11 +119,12 @@ ids from uicomponent_course_card_01 :
 
     <!--List view for course cards-->
     <!--items will use ui_component_course_card_01-->
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@id/semester_course_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="2.5dp"
-        android:layout_marginRight="2.5dp">
-    </ListView>
+        android:layout_marginRight="2.5dp"
+    />
 
 </LinearLayout>
