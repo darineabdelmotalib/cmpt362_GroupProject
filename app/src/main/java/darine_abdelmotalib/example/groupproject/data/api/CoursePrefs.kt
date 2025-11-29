@@ -4,12 +4,18 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.core.content.edit
+import darine_abdelmotalib.example.groupproject.data.api.CourseOutline
+import darine_abdelmotalib.example.groupproject.data.api.CourseSection
+import darine_abdelmotalib.example.groupproject.data.api.SfuCourseApi
+import darine_abdelmotalib.example.groupproject.data.db.UserProgressDb
 
 object CoursePrefs {
 
     private const val PREF_NAME = "course_completion_prefs"
-    private const val ERROR_STRING = "error_string"
+    private const val SEM_PREF_NAME = "semester_list_prefs_debugVer0.7"
+    const val ERROR_STRING = "error_string"
 
+    /*Course ---------------------------------------- */
     private fun prefs(context: Context): SharedPreferences =
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
@@ -19,11 +25,12 @@ object CoursePrefs {
     fun setCourseCompleted(context: Context, key: String, completed: Boolean) {
         prefs(context).edit().putBoolean(key, completed).apply()
     }
+    /*Course End ---------------------------------------- */
 
-    private const val SEM_PREF_NAME = "semester_list_prefs_debugVer0.1"
+    /*Semester ---------------------------------------- */
 
     /*SharedPreferences containing semester data*/
-    private fun semesterPrefs(context: Context): SharedPreferences =
+    fun semesterPrefs(context: Context): SharedPreferences =
         context.getSharedPreferences(SEM_PREF_NAME, Context.MODE_PRIVATE)
 
     /*Adds a sem according to semester key (eg. "fall-2025")*/
@@ -111,6 +118,6 @@ object CoursePrefs {
         val list = getCourseListFromSem(context, key)
         Log.d("debugPrintSem", "sem: $key, courses: $list")
     }
-
+    /*Semester End ---------------------------------------- */
 
 }

@@ -31,7 +31,8 @@ ids from uicomponent_course_card_01 :
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <!--DEBUG BUTTONS-->
@@ -45,35 +46,37 @@ ids from uicomponent_course_card_01 :
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="debug_forward_scheduleview" />
+<!--        <Button-->
+<!--            android:id="@+id/debug_add_sem"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="debug_add_sem" />-->
+<!--        <Button-->
+<!--            android:id="@+id/debug_add_course"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="debug_add_course" />-->
+<!--        <Button-->
+<!--            android:id="@+id/debug_remove_course"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="debug_remove_course" />-->
         <Button
-            android:id="@+id/debug_add_sem"
+            android:id="@+id/debug_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="debug_add_sem" />
-        <Button
-            android:id="@+id/debug_add_course"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="debug_add_course" />
-        <Button
-            android:id="@+id/debug_remove_course"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="debug_remove_course" />
+            android:text="debug_test" />
         <!--END DEBUG BUTTONS-->
 
         <!--List view for semesters-->
         <!--items will use component_semester_plan-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@id/semester_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="2.5dp"
-            android:layout_marginRight="2.5dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@id/semester_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2.5dp"
+        android:layout_marginRight="2.5dp"
         />
-    </LinearLayout>
-
-
-
+</LinearLayout>
 
 </ScrollView>
