@@ -14,6 +14,7 @@ import androidx.core.view.MenuHost
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import darine_abdelmotalib.example.groupproject.R
@@ -83,8 +84,25 @@ class SemesterPlanListFragment : Fragment() {
     /*In Fragment*/
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
-        /*Inflates a separate layout*/
         inflater.inflate(R.menu.menu_semester_view, menu)
+    }
+
+    private fun showAddSemDialog() {
+        val dialog = AddSemDialogFragment { seasonVal, yearVal ->
+            viewModel.onDialogResult(seasonVal, yearVal)
+        }
+        dialog.show(parentFragmentManager, "Add Semester Dialog")
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when {
+            item.itemId == R.id.addSemesterOption -> {
+                Log.d("SemesterPlanListFragment", "Add Semester option selected")
+                showAddSemDialog()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 

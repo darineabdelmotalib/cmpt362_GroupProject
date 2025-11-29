@@ -92,6 +92,11 @@ object UserProgressDb {
         CoursePrefs.setSem(context, key)
     }
 
+    fun doesSemExist(context: Context, sem: Int, year: Int): Boolean {
+        val key = makeSemKey(sem, year)
+        return CoursePrefs.doesSemExist(context, key)
+    }
+
     /*Returns true if course is successfully added
     * Returns false if course is already there*/
     fun addCourseToSem(context: Context, sem: Int, year: Int, dept: String, number: String): Boolean{
