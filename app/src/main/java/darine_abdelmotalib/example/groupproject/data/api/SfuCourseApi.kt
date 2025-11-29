@@ -6,14 +6,6 @@ import java.io.BufferedReader
 import java.net.HttpURLConnection
 import java.net.URL
 
-data class CourseOutline(
-    val code: String,
-    val title: String,
-    val units: String?,
-    val description: String,
-    val prerequisites: String?
-)
-
 object SfuCourseApi {
 
     private const val BASE_URL =

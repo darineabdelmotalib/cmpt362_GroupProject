@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    /*In MainActivity.kt*/
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
@@ -67,13 +66,15 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.editProfileFragment)
                 true
             }
-            item.itemId == R.id.placeholder_action -> {
-                Log.d("SemesterPlanListFragment", "menu item selected")
-                true
+            item.itemId == R.id.addSemesterOption -> {
+                Log.d("MainActivity", "menu item clicked")
+                false
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
