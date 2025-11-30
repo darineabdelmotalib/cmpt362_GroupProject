@@ -1,6 +1,10 @@
 package darine_abdelmotalib.example.groupproject.ui.tree
 
+import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,12 +27,14 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.getValue
+import kotlin.text.lowercase
 
 class CourseTreeFragment : Fragment() {
     private lateinit var graphRecycler: RecyclerView
     private lateinit var adapter: GraphAdapter
     private val viewModel: CourseTreeViewModel by viewModels()
-
+    private var courseList: List<String> = emptyList()
+    private val prereqMap = mutableMapOf<String, List<String>>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +47,15 @@ class CourseTreeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         graphRecycler = view.findViewById(R.id.recycler)
+        viewModel.courseList.observe(viewLifecycleOwner) { list ->
+            if (::adapter.isInitialized) {
+                adapter.updateGraph(
+                    viewModel.courseList.value ?: emptyList(),
+                    viewModel.prereqMap.value ?: emptyMap())
+                adapter.notifyDataSetChanged()
+            }
+        }
+
         setupGraphView()
     }
 
@@ -56,10 +71,6 @@ class CourseTreeFragment : Fragment() {
         // attach item decorations to draw edges
         graphRecycler.addItemDecoration(ArrowEdgeDecoration())
 
-        // adapter class extends from 'AbstractGraphAdapter'
-        adapter = GraphAdapter()
-        graphRecycler.adapter = adapter
-
         lifecycleScope.launch {
             // build graph
             if (viewModel.graph.value == null) {
@@ -67,7 +78,13 @@ class CourseTreeFragment : Fragment() {
                     buildGraph()
                 }
                 viewModel.graph.value = graph
+                viewModel.courseList.value = courseList
+                viewModel.prereqMap.value = prereqMap
             }
+
+            // adapter class extends from 'AbstractGraphAdapter'
+            adapter = GraphAdapter(courseList, prereqMap)
+            graphRecycler.adapter = adapter
 
             viewModel.graph.value.let { graph ->
                 adapter.submitGraph(graph)
@@ -82,62 +99,96 @@ class CourseTreeFragment : Fragment() {
         // set up dictionary for created Node object to avoid creating multiples of a course
         val nodeMap = mutableMapOf<String, Node>()
 
+        // check if we visited a node in the tree for recursively added prerequisites (avoid loops)
+        val visited = mutableSetOf<String>()
+
         // add all courses
         for (course in courses) {
             val code = "${course.dept} ${course.number}".trim().uppercase()
-
-            // get key (if exists) or put the new Node into the map
-            val courseNode = nodeMap.getOrPut(code) {Node(code)}
-            if (!graph.contains(courseNode)) {
-                graph.addNode(courseNode)
-            }
-
-            val outline = try {
-                withContext(IO) {
-                    SfuCourseApi.fetchCourseOutline(course.dept, course.number)
-                }
-            } catch (e: Exception) {
-                // don't include courses not available during current semester
-                graph.removeNode(courseNode)
-                nodeMap.remove(code)
-                continue
-            }
-
-            val prereqs = setupPrereqs(outline.prerequisites)
-            for (prereq in prereqs) {
-                val prereqCode = prereq.trim().uppercase()
-                val prereqNode = nodeMap.getOrPut(prereqCode) {Node(prereqCode)}
-                if (!graph.contains(prereqNode)) {
-                    graph.addNode(prereqNode)
-                }
-            }
+            addCourses(code, graph, nodeMap, prereqMap, visited)
         }
 
-        // add edges
-        for (course in courses) {
-            val code = "${course.dept} ${course.number}".trim().uppercase()
-            val courseNode = nodeMap[code] ?: continue
+        courseList = nodeMap.keys.toList()
 
-            val outline = try {
-                withContext(IO) {
-                    SfuCourseApi.fetchCourseOutline(course.dept, course.number)
-                }
-            } catch (e: Exception) {
-                continue
-            }
-
-            val prereqs = setupPrereqs(outline.prerequisites).filter { it != code }
-            for (prereq in prereqs) {
-                val prereqCode = prereq.trim().uppercase()
-                val prereqNode = nodeMap.getOrPut(prereqCode) {Node(prereqCode)}
-                if (!graph.contains(prereqNode)) {
-                    graph.addNode(prereqNode)
-                }
-                graph.addEdge(prereqNode, courseNode)
-            }
+        // ensure courses not offered are not included in graph
+        val coursesNotOffered = graph.nodes.filter { it !in nodeMap.values }
+        for (node in coursesNotOffered) {
+            graph.removeNode(node)
         }
 
         return graph
+    }
+
+    private suspend fun addCourses(
+        courseCode: String,
+        graph: Graph,
+        nodeMap: MutableMap<String, Node>,
+        prereqMap: MutableMap<String, List<String>>,
+        visitedNodes: MutableSet<String>
+    ) {
+        // course already added, nothing else to add
+        if (visitedNodes.contains(courseCode)) {
+            return
+        }
+
+        // create node
+        val courseNode = nodeMap.getOrPut(courseCode) {Node(courseCode)}
+        if (!graph.contains(courseNode)) {
+            graph.addNode(courseNode)
+        }
+
+        val dept = courseCode.substringBefore(" ").trim().uppercase()
+        val number = courseCode.substringAfter(" ").trim().uppercase()
+        val outline = try {
+            withContext(IO) {
+                SfuCourseApi.fetchCourseOutline(dept, number)
+            }
+        } catch (e: Exception) {
+            // don't include courses not available during current semester
+            graph.removeNode(courseNode)
+            nodeMap.remove(courseCode)
+            visitedNodes.remove(courseCode)
+            return
+        }
+
+        // get prereqs
+        val prereqs = parsePrereqs(outline.prerequisites)
+        val filteredPrereqs = setupPrereqs(prereqs.toString()).filter { it != courseCode }
+        prereqMap[courseCode] = filteredPrereqs
+
+        // add prereq nodes and draw edges
+        for (prereq in filteredPrereqs) {
+            val prereqNode = nodeMap.getOrPut(prereq) {Node(prereq)}
+            if (!graph.contains(prereqNode)) {
+                graph.addNode(prereqNode)
+            }
+
+            // recursively add prereqs until all added
+            addCourses(prereq, graph, nodeMap, prereqMap, visitedNodes)
+            graph.addEdge(prereqNode, courseNode)
+        }
+
+        // mark node as visited
+        visitedNodes.add(courseCode)
+        Log.d("$courseNode", "$filteredPrereqs")
+    }
+
+    private fun parsePrereqs(prereqText: String?): List<String> {
+        val prereqsResult = mutableListOf<String>()
+
+        if (prereqText != null) {
+            val parts = prereqText.split(Regex(",| and "))
+            for (part in parts) {
+                val groups = part.replace("[()]".toRegex(), "").trim() // prereqs groups by parentheses
+                val or = groups.split(Regex("\\bor\\b")).map { it.trim() } // split "or" groups (CMPT 120 or CMPT 130)
+                val course = Regex("""[A-Z]{3,4}\s*\d{3}[A-Z]?""").find(or.first())
+                if (course != null) {
+                    prereqsResult.add(course.value)
+                }
+            }
+        }
+
+        return prereqsResult
     }
 
     private fun setupPrereqs(prereqRaw: String?): List<String> {
@@ -146,7 +197,8 @@ class CourseTreeFragment : Fragment() {
         }
 
         val courseRegex = Regex("""[A-Z]{3,4}\s\d{3}[A-Z]?""")
-        return courseRegex.findAll(prereqRaw).map { it.value }.toList().distinct()
+        return courseRegex.findAll(prereqRaw)
+            .map { it.value.trim().uppercase() }.toList().distinct()
     }
 
     private fun getAllCourses(): List<RequirementCourse> {
@@ -171,9 +223,17 @@ class CourseTreeFragment : Fragment() {
     }
 }
 
-class GraphAdapter() : AbstractGraphAdapter<GraphAdapter.NodeViewHolder>() {
+class GraphAdapter(
+    private var courses: List<String>,
+    private var coursePrereqs: Map<String, List<String>>) :
+    AbstractGraphAdapter<GraphAdapter.NodeViewHolder>() {
     inner class NodeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val text: TextView = view.findViewById<TextView>(R.id.courseNode)
+    }
+
+    fun updateGraph(courseChanges: List<String>, updatedCoursePrereqs: Map<String, List<String>>) {
+        courses = courseChanges
+        coursePrereqs = updatedCoursePrereqs
     }
 
     override fun onCreateViewHolder(
@@ -187,6 +247,48 @@ class GraphAdapter() : AbstractGraphAdapter<GraphAdapter.NodeViewHolder>() {
 
     override fun onBindViewHolder(holder: NodeViewHolder, position: Int) {
         holder.text.text = getNodeData(position).toString()
+
+        val courseCode = getNodeData(position).toString()
+        val course = courses[position]
+        val prereqs = coursePrereqs[courseCode] ?: emptyList()
+
+        // format course codes for preferences keys ("CMPT 120" -> "cmpt-120")
+        val regex = Regex("""([A-Za-z]+)\s*(\d+[A-Za-z]*)""")
+        val code = regex.matchEntire(courseCode)
+
+        var courseCompletion = false
+        var prereqsCompletion = true
+        val prefs = holder.itemView.context.getSharedPreferences("course_completion_prefs", Context.MODE_PRIVATE)
+        if (code != null) {
+            val prefKey = "${code.groupValues[1]}-${code.groupValues[2]}".lowercase()
+            courseCompletion = prefs.getBoolean(prefKey, false)
+
+            // check if all prereqs are completed
+            for (prereq in prereqs) {
+                val prereqCode = regex.matchEntire(prereq)
+                if (prereqCode != null) {
+                    val prefKey = "${prereqCode.groupValues[1]}-${prereqCode.groupValues[2]}".lowercase()
+                    val completed = prefs.getBoolean(prefKey, false)
+                    if (!completed) {
+                        prereqsCompletion = false
+                        break
+                    }
+                }
+            }
+        }
+
+        val nodeColor = holder.text.background
+        if (nodeColor is GradientDrawable) { // default is grey - cannot take course
+            if (courseCompletion == true) {
+                nodeColor.setColor(Color.parseColor("#98FD8F")) // green - course completed
+            }
+            else if (prereqsCompletion == true && courseCompletion == false) {
+                nodeColor.setColor(Color.parseColor("#99ccff")) // blue - prereqs met, can enroll in course
+            }
+            else {
+                nodeColor.setColor(holder.itemView.resources.getColor(R.color.light_grey))
+            }
+        }
     }
 
     override fun submitGraph(graph: Graph?) {
