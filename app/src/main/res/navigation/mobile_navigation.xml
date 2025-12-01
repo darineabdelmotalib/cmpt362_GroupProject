@@ -11,9 +11,11 @@
         android:name="darine_abdelmotalib.example.groupproject.ui.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile">
+
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+
         <action
             android:id="@+id/action_profileFragment_to_courseMazeFragment"
             app:destination="@id/courseMazeFragment" />
@@ -24,9 +26,11 @@
         android:name="darine_abdelmotalib.example.groupproject.ui.profile.EditProfileFragment"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_profile">
+
         <action
             android:id="@+id/action_editProfileFragment_to_searchForProgramFragment"
             app:destination="@id/searchForProgramFragment" />
+
         <action
             android:id="@+id/action_editProfileFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -37,6 +41,7 @@
         android:name="darine_abdelmotalib.example.groupproject.ui.profile.SearchForProgramFragment"
         android:label="Search for Program"
         tools:layout="@layout/fragment_search_for_program">
+
         <action
             android:id="@+id/action_searchForProgramFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
@@ -48,9 +53,11 @@
         android:name="darine_abdelmotalib.example.groupproject.ui.planning.semester.SemesterPlanListFragment"
         android:label="Semester Plan"
         tools:layout="@layout/fragment_semester_plan_list">
+
         <action
             android:id="@+id/action_semesterPlanListFragment_to_courseInfoPlanFragment"
             app:destination="@id/courseInfoPlanFragment" />
+
         <action
             android:id="@+id/action_semesterPlanListFragment_to_scheduleViewFragment"
             app:destination="@id/scheduleViewFragment" />
@@ -59,8 +66,9 @@
     <fragment
         android:id="@+id/courseInfoPlanFragment"
         android:name="darine_abdelmotalib.example.groupproject.ui.planning.CourseInfoPlanFragment"
-        android:label="Course Info"
+        android:label="Course Info (Plan)"
         tools:layout="@layout/fragment_course_info_plan">
+
         <action
             android:id="@+id/action_courseInfoPlanFragment_to_semesterPlanListFragment"
             app:destination="@id/semesterPlanListFragment" />
@@ -71,6 +79,7 @@
         android:name="darine_abdelmotalib.example.groupproject.ui.planning.ScheduleViewFragment"
         android:label="ScheduleViewFragment"
         tools:layout="@layout/fragment_schedule_view">
+
         <action
             android:id="@+id/action_scheduleViewFragment_to_semesterPlanListFragment"
             app:destination="@id/semesterPlanListFragment" />
@@ -82,6 +91,7 @@
         android:name="darine_abdelmotalib.example.groupproject.ui.requirements.ChooseProgramFragment"
         android:label="Choose Program"
         tools:layout="@layout/fragment_choose_program">
+
         <action
             android:id="@+id/action_chooseProgramFragment_to_programRequirementsFragment"
             app:destination="@id/programRequirementsFragment" />
@@ -92,9 +102,11 @@
         android:name="darine_abdelmotalib.example.groupproject.ui.requirements.ProgramRequirementsFragment"
         android:label="Program Requirements"
         tools:layout="@layout/fragment_program_requirements">
+
         <action
             android:id="@+id/action_programRequirementsFragment_to_courseInfoFragment"
             app:destination="@id/courseInfoFragment" />
+
         <action
             android:id="@+id/action_programRequirementsFragment_to_chooseProgramFragment"
             app:destination="@id/chooseProgramFragment" />
@@ -105,6 +117,7 @@
         android:name="darine_abdelmotalib.example.groupproject.ui.requirements.CourseInfoFragment"
         android:label="Course Info"
         tools:layout="@layout/fragment_req_course_info">
+
         <action
             android:id="@+id/action_courseInfoFragment_to_programRequirementsFragment"
             app:destination="@id/programRequirementsFragment" />
@@ -115,7 +128,7 @@
         android:id="@+id/courseTreeFragment"
         android:name="darine_abdelmotalib.example.groupproject.ui.tree.CourseTreeFragment"
         android:label="Course Tree"
-        tools:layout="@layout/fragment_course_tree">
+        tools:layout="@layout/fragment_course_tree" >
     </fragment>
 
     <!-- maze -->
@@ -123,6 +136,13 @@
         android:id="@+id/courseMazeFragment"
         android:name="darine_abdelmotalib.example.groupproject.ui.maze.CourseMazeFragment"
         android:label="Course Maze"
-        tools:layout="@layout/fragment_course_maze" />
+        tools:layout="@layout/fragment_course_maze">
+
+        <!-- THIS IS THE IMPORTANT FIX -->
+        <action
+            android:id="@+id/action_courseMazeFragment_to_courseInfoFragment"
+            app:destination="@id/courseInfoFragment" />
+
+    </fragment>
 
 </navigation>

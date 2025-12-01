@@ -36,30 +36,15 @@ class CourseInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         toolbar = binding.topAppBar.toolbar
-
-        // Back button
-        toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
-
-        // Debug buttons (optional)
-        binding.debugForward.setOnClickListener {
-            findNavController()
-                .navigate(R.id.action_courseInfoFragment_to_programRequirementsFragment)
-        }
-        binding.debugBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
 
         val dept = arguments?.getString("dept") ?: "cmpt"
         val number = arguments?.getString("courseNumber") ?: "120"
-        val titleFromArgs = arguments?.getString("courseTitle") ?: ""
+        val fallbackTitle = arguments?.getString("courseTitle") ?: ""
 
         binding.codeCredits.text = "${dept.uppercase()} $number"
-        binding.longTitle.text = titleFromArgs
-        binding.descriptionText.text = "Loading course info..."
-
-        toolbar.title = "${dept.uppercase()} $number"
+        binding.longTitle.text = fallbackTitle
+        binding.descriptionText.text = "Loading..."
 
         loadFromApi(dept, number)
     }
@@ -78,27 +63,25 @@ class CourseInfoFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if (outline == null) {
                     binding.descriptionText.text =
-                        "Unable to load course info from SFU API for $dept $number."
+                        "Unable to load course info from SFU API."
                     return@withContext
                 }
 
-                val unitsPart = outline.units?.let { " (${outline.units})" } ?: ""
-                binding.codeCredits.text = outline.code + unitsPart
-
-                binding.longTitle.text =
-                    outline.title.ifBlank { binding.longTitle.text.toString() }
-
                 toolbar.title = outline.code
 
-                setupPrereqRows(outline.prerequisites)
+                binding.codeCredits.text = outline.code +
+                        (outline.units?.let { " ($it)" } ?: "")
 
+                binding.longTitle.text = outline.title
                 binding.descriptionText.text =
-                    outline.description.ifBlank { "No description available." }
+                    outline.description ?: "No description available."
+
+                setupPrereqs(outline.prerequisites)
             }
         }
     }
 
-    private fun setupPrereqRows(prereqRaw: String?) {
+    private fun setupPrereqs(prereqRaw: String?) {
         val container = binding.prereqContainer
         container.removeAllViews()
 
@@ -110,9 +93,7 @@ class CourseInfoFragment : Fragment() {
         if (matches.isEmpty()) {
             addPrereqRow(prereqRaw)
         } else {
-            matches.forEach { code ->
-                addPrereqRow(code)
-            }
+            matches.forEach { addPrereqRow(it) }
         }
     }
 
@@ -122,7 +103,6 @@ class CourseInfoFragment : Fragment() {
             binding.prereqContainer,
             false
         )
-
         row.findViewById<TextView>(R.id.prereqText).text = text
         binding.prereqContainer.addView(row)
     }
