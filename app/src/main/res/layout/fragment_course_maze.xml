@@ -16,30 +16,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:paddingTop="40dp"
-            android:clipToPadding="false">
-
-            <TextView
-                android:id="@+id/mazeTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your Degree Journey"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginBottom="40dp"/>
-
-        </LinearLayout>
+            android:paddingTop="24dp"
+            android:paddingBottom="40dp"
+            android:clipToPadding="false"/>
 
         <ImageView
             android:id="@+id/character_token"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@mipmap/ic_launcher_round"
-            android:elevation="10dp"
-            android:visibility="invisible"
-            tools:visibility="visible"/>
+            android:elevation="12dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:layout_marginTop="100dp"
+            tools:layout_marginStart="50dp"/>
 
     </FrameLayout>
 </ScrollView>
