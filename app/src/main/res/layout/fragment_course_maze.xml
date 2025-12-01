@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/page_bg"
     android:fillViewport="true">
 
@@ -20,16 +21,18 @@
             android:paddingBottom="40dp"
             android:clipToPadding="false"/>
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/character_token"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@mipmap/ic_launcher_round"
             android:elevation="12dp"
-            android:visibility="gone"
-            tools:visibility="visible"
-            tools:layout_marginTop="100dp"
-            tools:layout_marginStart="50dp"/>
+            android:visibility="invisible"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/CircleImageStyle"
+            app:strokeWidth="2dp"
+            app:strokeColor="@android:color/white"
+            tools:visibility="visible"/>
 
     </FrameLayout>
 </ScrollView>

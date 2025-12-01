@@ -3,7 +3,9 @@ package darine_abdelmotalib.example.groupproject.ui.maze
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +16,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import darine_abdelmotalib.example.groupproject.R
 import darine_abdelmotalib.example.groupproject.data.db.CsRequirementsDb
 import darine_abdelmotalib.example.groupproject.data.db.UserProgressDb
 import darine_abdelmotalib.example.groupproject.databinding.FragmentCourseMazeBinding
+import darine_abdelmotalib.example.groupproject.ui.profile.UserProfilePrefs
 
 class CourseMazeFragment : Fragment() {
 
@@ -34,7 +38,34 @@ class CourseMazeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        loadCharacterImage()
         generateSagaMap()
+    }
+
+    //Helper to convert dpi to pixels
+    private fun dpToPx(dp: Int): Int {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            dp.toFloat(),
+            resources.displayMetrics
+        ).toInt()
+    }
+
+    private fun loadCharacterImage() {
+        val context = requireContext()
+        val savedUri = UserProfilePrefs.getAvatarUri(context)
+        val charToken = binding.characterToken
+
+        if (savedUri != null) {
+            try {
+                charToken.setImageURI(Uri.parse(savedUri))
+            } catch (e: Exception) {
+                charToken.setImageResource(R.drawable.default_pfp)
+            }
+        } else {
+            charToken.setImageResource(R.drawable.default_pfp)
+        }
     }
 
     private fun generateSagaMap() {
@@ -48,6 +79,12 @@ class CourseMazeFragment : Fragment() {
         val levels = allCourses.groupBy { it.number.firstOrNull() ?: '0' }
 
         var lastCompletedView: View? = null
+        var firstView: View? = null
+
+        val itemWidth = dpToPx(120)
+        val itemHeight = dpToPx(60)
+        val vGap = dpToPx(80)
+        val sideMargin = dpToPx(40)
 
         for ((levelChar, courses) in levels) {
             val levelNum = levelChar.digitToIntOrNull() ?: 0
@@ -60,27 +97,19 @@ class CourseMazeFragment : Fragment() {
                 textSize = 20f
                 setTypeface(null, Typeface.BOLD)
                 gravity = Gravity.CENTER
-                setPadding(0, 60, 0, 30)
+                setPadding(0, dpToPx(30), 0, dpToPx(15))
 
-                //Lower Division (100/200): Requires 100% for "Completed"
-                //Upper Division (300/400): Shows # courses completed
                 if (levelNum < 3) {
                     if (isAllDone) {
                         text = "LEVEL ${levelChar}00 COMPLETED!"
-                        setTextColor(Color.parseColor("#FFD700")) //Gold for completion
+                        setTextColor(Color.parseColor("#FFD700"))
                     } else {
                         text = "LEVEL ${levelChar}00 ($completedCount/$totalCount)"
                         setTextColor(Color.BLACK)
                     }
                 } else {
-                    //For 300/400 levels where not all are required
                     text = "LEVEL ${levelChar}00 ($completedCount Completed)"
-
-                    if (completedCount > 0) {
-                        setTextColor(Color.BLUE)
-                    } else {
-                        setTextColor(Color.BLACK)
-                    }
+                    if (completedCount > 0) setTextColor(Color.BLUE) else setTextColor(Color.BLACK)
                 }
             }
             rootContainer.addView(headerText)
@@ -93,15 +122,9 @@ class CourseMazeFragment : Fragment() {
             }
             rootContainer.addView(levelContainer)
 
-            val itemWidth = 300
-            val itemHeight = 160
-            val vGap = 100
-
             for ((index, course) in courses.withIndex()) {
                 val row = index / 2
                 val col = index % 2
-
-                //Zig-Zag Logic: Even rows Left->Right, Odd rows Right->Left
                 val isLeft = if (row % 2 == 0) (col == 0) else (col == 1)
 
                 val button = Button(context).apply {
@@ -111,12 +134,16 @@ class CourseMazeFragment : Fragment() {
                     layoutParams = FrameLayout.LayoutParams(itemWidth, itemHeight).apply {
                         topMargin = row * (itemHeight + vGap)
                         gravity = if (isLeft) Gravity.START else Gravity.END
-                        marginStart = if (isLeft) 100 else 0
-                        marginEnd = if (!isLeft) 100 else 0
+                        marginStart = if (isLeft) sideMargin else 0
+                        marginEnd = if (!isLeft) sideMargin else 0
                     }
                 }
 
-                // Color Logic
+                if (firstView == null) {
+                    firstView = button
+                }
+
+                //Color Logic
                 val isDone = UserProgressDb.isCourseCompleted(context, course.dept, course.number)
                 if (isDone) {
                     button.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#4CAF50")) // Green
@@ -131,25 +158,22 @@ class CourseMazeFragment : Fragment() {
                     Toast.makeText(context, "${course.label}\n$status", Toast.LENGTH_SHORT).show()
                 }
 
-                // Draw Lines
                 if (index > 0) {
                     val isSameRow = (index / 2) == ((index - 1) / 2)
                     val line = View(context).apply {
                         if (isSameRow) {
-                            // Horizontal
-                            layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 10).apply {
-                                topMargin = row * (itemHeight + vGap) + (itemHeight / 2) - 5
-                                marginStart = itemWidth + 80
-                                marginEnd = itemWidth + 80
+                            layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(4)).apply {
+                                topMargin = row * (itemHeight + vGap) + (itemHeight / 2) - dpToPx(2)
+                                marginStart = itemWidth + (sideMargin - dpToPx(10))
+                                marginEnd = itemWidth + (sideMargin - dpToPx(10))
                             }
                         } else {
-                            // Vertical Drop
-                            layoutParams = FrameLayout.LayoutParams(10, vGap).apply {
-                                topMargin = (row * (itemHeight + vGap)) - vGap + (itemHeight/2)
+                            layoutParams = FrameLayout.LayoutParams(dpToPx(4), vGap).apply {
+                                topMargin = (row * (itemHeight + vGap)) - vGap + (itemHeight / 2)
                                 val dropOnLeft = (row % 2 != 0)
                                 gravity = if (!dropOnLeft) Gravity.START else Gravity.END
-                                marginStart = if (!dropOnLeft) 100 + (itemWidth/2) else 0
-                                marginEnd = if (dropOnLeft) 100 + (itemWidth/2) else 0
+                                marginStart = if (!dropOnLeft) sideMargin + (itemWidth / 2) else 0
+                                marginEnd = if (dropOnLeft) sideMargin + (itemWidth / 2) else 0
                             }
                         }
                         setBackgroundColor(Color.parseColor("#BDBDBD"))
@@ -160,19 +184,16 @@ class CourseMazeFragment : Fragment() {
             }
         }
 
-        // 3. Move Character
         rootContainer.post {
-            if (lastCompletedView != null) {
-                moveCharacterToView(lastCompletedView)
+            val target = lastCompletedView ?: firstView
+            if (target != null) {
+                moveCharacterToView(target)
             }
         }
     }
 
     private fun moveCharacterToView(target: View) {
         val charToken = binding.characterToken
-
-        // We need to find the absolute position of the target view relative to the root container
-        // Since 'target' is inside a FrameLayout which is inside the LinearLayout...
 
         val parent = target.parent as View
 

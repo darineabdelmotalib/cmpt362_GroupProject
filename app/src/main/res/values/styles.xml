@@ -18,4 +18,10 @@
         <item name="iconTint">@color/calendar_text_white</item>
     </style>
 
+    <!-- maze character token -->
+    <style name="CircleImageStyle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
 </resources>
