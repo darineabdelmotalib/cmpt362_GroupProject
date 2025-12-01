@@ -51,6 +51,38 @@ class ProfileFragment : Fragment() {
         setupCourseProgressBar()
     }
 
+    override fun onResume() {
+        super.onResume()
+        setupCourseProgressBar()
+        loadProfileData()
+    }
+
+    private fun loadProfileData() {
+        val context = requireContext()
+
+        binding.profileName.text = UserProfilePrefs.getName(context)
+
+        val major1 = UserProfilePrefs.getMajor(context)
+        val major2 = UserProfilePrefs.getMajor2(context)
+
+        if (major2.isNotEmpty() && !major2.equals("None", ignoreCase = true)) {
+            binding.profileMajor.text = "$major1 & $major2"
+        } else {
+            binding.profileMajor.text = major1
+        }
+
+        val avatarUri = UserProfilePrefs.getAvatarUri(context)
+        if (avatarUri != null) {
+            try {
+                binding.profileCharacter.setImageURI(android.net.Uri.parse(avatarUri))
+            } catch (e: Exception) {
+                binding.profileCharacter.setImageResource(R.drawable.default_pfp)
+            }
+        } else {
+            binding.profileCharacter.setImageResource(R.drawable.default_pfp)
+        }
+    }
+
     private fun setupCourseProgressBar() {
         val allUniqueCourses = CsRequirementsDb.getAllUniqueCourses()
         val totalXp = allUniqueCourses.size
