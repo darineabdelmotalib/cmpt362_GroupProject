@@ -1,4 +1,4 @@
-# 📚 SFU Course Planner
+# SFU Course Planner
 
 A comprehensive mobile application designed to help SFU students plan their academic journey, track degree requirements, manage semester schedules, and visualize course prerequisites.
 
@@ -11,7 +11,7 @@ A comprehensive mobile application designed to help SFU students plan their acad
 
 ---
 
-## 📱 Overview
+## Overview
 
 The SFU Course Planner is your all-in-one academic companion that helps you:
 
@@ -94,7 +94,7 @@ Access the navigation drawer by tapping the **☰ hamburger menu** icon in the t
 5. **Edit Schedule** - Tap the **pencil icon** to add/remove courses
 
 ### Adding a Course
-1. From Semester Plan, tap **✏ Edit Schedule** on any semester
+1. From Semester Plan, tap pencil Edit Schedule** on any semester
 2. **Search** for a course using the search bar (e.g., "CMPT 362")
 3. **Select a course** from the search results
 4. **Choose your sections**:
@@ -255,7 +255,9 @@ The APK will be generated at: `app/build/outputs/apk/debug/app-debug.apk`
 
 ## Future Enhancements
 
-- [ ] Dark mode support
+- [x] Dark mode support *(Completed)*
+- [x] Avatar selection *(Completed)*
+- [x] Semester timeline info *(Completed)*
 - [ ] Course notes and tagging
 - [ ] Export schedule to calendar
 - [ ] Push notifications for registration dates
