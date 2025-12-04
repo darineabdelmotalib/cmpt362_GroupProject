@@ -1,4 +1,4 @@
-# 📚 SFU Course Planner
+# SFU Course Planner
 
 A comprehensive mobile application designed to help SFU students plan their academic journey, track degree requirements, manage semester schedules, and visualize course prerequisites.
 
@@ -6,7 +6,7 @@ A comprehensive mobile application designed to help SFU students plan their acad
 
 ---
 
-## 📱 Overview
+## Overview
 
 The SFU Course Planner is your all-in-one academic companion that helps you:
 
