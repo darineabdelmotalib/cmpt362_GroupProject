@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MON 10:30 - 11:20"
-        android:textColor="@color/black"
+        android:textColor="@android:color/black"
         android:textSize="14sp"
         android:textStyle="bold" />
 
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CMPT 362"
-        android:textColor="@color/black"
+        android:textColor="@android:color/black"
         android:textSize="14sp" />
 
 </LinearLayout>

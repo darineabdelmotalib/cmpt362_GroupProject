@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/page_bg"
+    android:background="?android:attr/colorBackground"
     android:orientation="vertical">
 
     <ScrollView
@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="CMPT362 (3)"
-                android:textColor="@color/black"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:text="Mobile Applications Programming and Design"
-                android:textColor="@color/gray"
+                android:textColor="?android:attr/textColorSecondary"
                 android:textSize="16sp" />
 
             <!-- Hidden fields -->
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:text="Choose a lecture section"
-                android:textColor="@color/gray"
+                android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp" />
 
             <!-- Lecture Options Container -->
@@ -103,7 +103,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Lecture D100"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -112,7 +112,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:text="Instructor"
-                                android:textColor="@color/gray"
+                                android:textColor="?android:attr/textColorSecondary"
                                 android:textSize="11sp" />
 
                             <TextView
@@ -120,7 +120,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Xingdong Yang"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="13sp" />
 
                             <TextView
@@ -128,7 +128,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="Time"
-                                android:textColor="@color/gray"
+                                android:textColor="?android:attr/textColorSecondary"
                                 android:textSize="11sp" />
 
                             <TextView
@@ -136,7 +136,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Thu, 8:30 a.m-11:20 a.m"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="13sp" />
 
                             <TextView
@@ -144,7 +144,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="Location"
-                                android:textColor="@color/gray"
+                                android:textColor="?android:attr/textColorSecondary"
                                 android:textSize="11sp" />
 
                             <TextView
@@ -152,7 +152,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="In Person, AQ3181"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="13sp" />
                         </LinearLayout>
 
@@ -195,7 +195,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Lecture D200"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -204,7 +204,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:text="Instructor"
-                                android:textColor="@color/gray"
+                                android:textColor="?android:attr/textColorSecondary"
                                 android:textSize="11sp" />
 
                             <TextView
@@ -212,7 +212,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Xingdong Yang"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="13sp" />
 
                             <TextView
@@ -220,7 +220,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="Time"
-                                android:textColor="@color/gray"
+                                android:textColor="?android:attr/textColorSecondary"
                                 android:textSize="11sp" />
 
                             <TextView
@@ -228,7 +228,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Thu, 8:30 a.m-11:20 a.m"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="13sp" />
 
                             <TextView
@@ -236,7 +236,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="Location"
-                                android:textColor="@color/gray"
+                                android:textColor="?android:attr/textColorSecondary"
                                 android:textSize="11sp" />
 
                             <TextView
@@ -244,7 +244,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="In Person, AQ3181"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="13sp" />
                         </LinearLayout>
 
@@ -267,7 +267,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:text="Choose a lab section"
-                android:textColor="@color/gray"
+                android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp" />
 
             <!-- Lab Options Container -->
@@ -307,7 +307,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Lab D101"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -316,7 +316,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:text="Instructor"
-                                android:textColor="@color/gray"
+                                android:textColor="?android:attr/textColorSecondary"
                                 android:textSize="11sp" />
 
                             <TextView
@@ -324,7 +324,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Xingdong Yang"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="13sp" />
 
                             <TextView
@@ -332,7 +332,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="Time"
-                                android:textColor="@color/gray"
+                                android:textColor="?android:attr/textColorSecondary"
                                 android:textSize="11sp" />
 
                             <TextView
@@ -340,7 +340,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Thu, 8:30 a.m-11:20 a.m"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="13sp" />
 
                             <TextView
@@ -348,7 +348,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="Location"
-                                android:textColor="@color/gray"
+                                android:textColor="?android:attr/textColorSecondary"
                                 android:textSize="11sp" />
 
                             <TextView
@@ -356,7 +356,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="In Person, AQ3181"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="13sp" />
                         </LinearLayout>
 
@@ -378,7 +378,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:text="Selected section"
-                android:textColor="@color/gray"
+                android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp" />
 
             <androidx.cardview.widget.CardView
@@ -412,7 +412,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="CMPT 362 (3)"
-                                android:textColor="@color/black"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -421,7 +421,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Mobile Applications Programming and Design"
-                                android:textColor="@color/gray"
+                                android:textColor="?android:attr/textColorSecondary"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -429,7 +429,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Xingdong Yang"
-                                android:textColor="@color/gray"
+                                android:textColor="?android:attr/textColorSecondary"
                                 android:textSize="12sp" />
                         </LinearLayout>
 
@@ -451,7 +451,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Lecture D100"
-                        android:textColor="@color/gray"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:textSize="12sp" />
 
                     <LinearLayout
@@ -465,7 +465,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Thu, 8:30a.m - 11:20a.m"
-                            android:textColor="@color/black"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:textSize="13sp" />
 
                         <TextView
@@ -473,7 +473,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="In Person, AQ3181"
-                            android:textColor="@color/black"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:textSize="13sp" />
                     </LinearLayout>
 
@@ -483,7 +483,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Lab D101"
-                        android:textColor="@color/gray"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:textSize="12sp" />
 
                     <LinearLayout
@@ -497,7 +497,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Thu, 11:30a.m - 12:30p.m"
-                            android:textColor="@color/black"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:textSize="13sp" />
 
                         <TextView
@@ -505,7 +505,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="In Person, AQ3181"
-                            android:textColor="@color/black"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:textSize="13sp" />
                     </LinearLayout>
 
@@ -522,7 +522,7 @@
         android:orientation="horizontal"
         android:padding="16dp"
         android:gravity="center"
-        android:background="@android:color/white"
+        android:background="?android:attr/colorBackground"
         android:elevation="8dp">
 
         <Button
@@ -532,8 +532,8 @@
             android:layout_marginEnd="16dp"
             android:paddingHorizontal="24dp"
             android:text="Cancel"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/light_grey"
+            android:textColor="?android:attr/textColorPrimary"
+            android:backgroundTint="?android:attr/colorControlHighlight"
             style="@style/Widget.MaterialComponents.Button" />
 
         <Button
@@ -543,7 +543,7 @@
             android:paddingHorizontal="24dp"
             android:text="Add this course"
             android:textColor="@android:color/white"
-            android:backgroundTint="#424242"
+            android:backgroundTint="#9C27B0"
             style="@style/Widget.MaterialComponents.Button" />
     </LinearLayout>
 

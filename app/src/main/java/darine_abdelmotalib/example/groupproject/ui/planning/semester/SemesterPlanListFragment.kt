@@ -48,6 +48,11 @@ class SemesterPlanListFragment : Fragment() {
                 // Navigate to Schedule View with semester info
                 val bundle = bundleOf("semester_key" to semester.term)
                 findNavController().navigate(R.id.action_semesterPlanListFragment_to_scheduleViewFragment, bundle)
+            },
+            onInfoButtonClick = { semester ->
+                // Show semester timeline dialog
+                val dialog = SemesterTimelineDialogFragment.newInstance(semester.term)
+                dialog.show(parentFragmentManager, "SemesterTimelineDialog")
             }
         )
 

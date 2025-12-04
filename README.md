@@ -4,6 +4,11 @@ A comprehensive mobile application designed to help SFU students plan their acad
 
 **Developed for CMPT 362 - Mobile Applications Programming and Design**
 
+> ⚠️ **Note:** The following features were added after the project deadline for personal enhancement:
+> - **Semester Timeline Info Button** (purple ℹ button) - View important semester dates
+> - **Dark Mode Toggle** - Switch between light and dark themes on the Profile page
+> - **Avatar Selection** - Choose from 6 different character avatars on the Profile page
+
 ---
 
 ## 📱 Overview
@@ -26,12 +31,15 @@ The SFU Course Planner is your all-in-one academic companion that helps you:
 - Track overall degree completion progress
 - See your major and minor selections
 - Edit profile information anytime
+- **Dark Mode toggle** - Switch between light and dark themes
+- **Avatar selection** - Choose from 6 unique character avatars
 
 ### Semester Planning
 - Create and manage multiple semesters (Fall, Spring, Summer)
 - Add courses to specific semesters
 - View total units per semester
 - Access detailed schedule view with weekly calendar
+- **View important semester dates** (enrollment, drop deadlines, exam period)
 
 ### Add Courses
 - Search through available CS courses
@@ -81,8 +89,9 @@ Access the navigation drawer by tapping the **☰ hamburger menu** icon in the t
 ### Semester Plan Page
 1. **View existing semesters** - Each semester shows term name and total units
 2. **Add a semester** - Tap the **⋮ menu** → "Add Semester"
-3. **View Schedule** - Tap the calendar icon to see weekly schedule
-4. **Edit Schedule** - Tap the ✏pencil icon to add/remove courses
+3. **View Important Dates** - Tap the **ℹ info icon** to see enrollment dates, drop deadlines, exam periods
+4. **View Schedule** - Tap the **calendar icon** to see weekly schedule
+5. **Edit Schedule** - Tap the **pencil icon** to add/remove courses
 
 ### Adding a Course
 1. From Semester Plan, tap **✏ Edit Schedule** on any semester

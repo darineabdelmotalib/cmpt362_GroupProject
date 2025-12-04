@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Background circle -->
+    <path
+        android:fillColor="#FFF3E0"
+        android:pathData="M100,100m-100,0a100,100 0,1 1,200 0a100,100 0,1 1,-200 0"/>
+    <!-- Face -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M100,65m-45,0a45,50 0,1 1,90 0a45,50 0,1 1,-90 0"/>
+    <!-- Short spiky hair -->
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M55,55 L60,25 L75,45 L85,20 L100,40 L115,20 L125,45 L140,25 L145,55 Q145,35 100,30 Q55,35 55,55"/>
+    <!-- Glasses -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#37474F"
+        android:strokeWidth="3"
+        android:pathData="M65,65 L95,65 M105,65 L135,65 M95,65 L105,65"/>
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#37474F"
+        android:strokeWidth="2"
+        android:pathData="M70,60 Q65,55 70,50 Q85,45 90,50 Q95,55 90,60 Q85,65 80,65 Q70,65 70,60"/>
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#37474F"
+        android:strokeWidth="2"
+        android:pathData="M130,60 Q135,55 130,50 Q115,45 110,50 Q105,55 110,60 Q115,65 120,65 Q130,65 130,60"/>
+    <!-- Eyes behind glasses -->
+    <path
+        android:fillColor="#37474F"
+        android:pathData="M80,60m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0"/>
+    <path
+        android:fillColor="#37474F"
+        android:pathData="M120,60m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0"/>
+    <!-- Smile -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#37474F"
+        android:strokeWidth="3"
+        android:pathData="M85,85 Q100,100 115,85"/>
+    <!-- Body/Shirt -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M40,200 Q40,140 100,130 Q160,140 160,200 L40,200"/>
+</vector>
+

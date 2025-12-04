@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import darine_abdelmotalib.example.groupproject.databinding.ActivityMainBinding
+import darine_abdelmotalib.example.groupproject.data.prefs.ThemePrefs
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Apply saved theme before super.onCreate()
+        ThemePrefs.applySavedTheme(this)
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)

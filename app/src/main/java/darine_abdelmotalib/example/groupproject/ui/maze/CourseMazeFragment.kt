@@ -56,13 +56,15 @@ class CourseMazeFragment : Fragment() {
         val charToken = binding.characterToken
 
         if (savedUri != null) {
+            // Custom avatar from gallery
             try {
                 charToken.setImageURI(Uri.parse(savedUri))
             } catch (e: Exception) {
-                charToken.setImageResource(R.drawable.default_pfp)
+                charToken.setImageResource(UserProfilePrefs.getAvatarDrawable(context))
             }
         } else {
-            charToken.setImageResource(R.drawable.default_pfp)
+            // Use built-in avatar selection
+            charToken.setImageResource(UserProfilePrefs.getAvatarDrawable(context))
         }
     }
 

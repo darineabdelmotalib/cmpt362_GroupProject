@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark mode specific colors -->
+    
+    <!-- Course cards - darker backgrounds for dark mode -->
+    <color name="course_card_outline">#FF424242</color>
+    <color name="course_card_details">#FF303030</color>
+    <color name="card_background">#FF1E1E1E</color>
+
+    <!-- Pages / backgrounds -->
+    <color name="page_bg">#FF121212</color>
+
+    <!-- Labels / text -->
+    <color name="label_grey">#FF9E9E9E</color>
+    <color name="light_grey">#FF424242</color>
+    <color name="gray">#FFB0B0B0</color>
+
+    <!-- Semester plan -->
+    <color name="semester_plan_outline">#FF424242</color>
+</resources>
+

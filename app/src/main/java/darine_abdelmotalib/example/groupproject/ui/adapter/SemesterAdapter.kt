@@ -12,7 +12,8 @@ import darine_abdelmotalib.example.groupproject.databinding.ComponentSemesterPla
 
 class SemesterAdapter(
     private val onEditSemesterButtonClick: (SemesterItem) -> Unit,
-    private val onViewSemesterButtonClick: (SemesterItem) -> Unit
+    private val onViewSemesterButtonClick: (SemesterItem) -> Unit,
+    private val onInfoButtonClick: (SemesterItem) -> Unit
 ) : ListAdapter<SemesterItem, SemesterAdapter.SemesterViewHolder>(SemesterDiffCallback()) {
 
     inner class SemesterViewHolder(private val binding: ComponentSemesterPlanBinding) :
@@ -21,6 +22,11 @@ class SemesterAdapter(
         fun bind(semester: SemesterItem) {
             binding.semesterTerm.text = convertKey(semester.term)
             binding.semesterTotalCredits.text = "${semester.totalUnits} total units"
+
+            // Semester Info button
+            binding.buttonSemesterInfo.setOnClickListener {
+                onInfoButtonClick(semester)
+            }
 
             // Edit Semester button
             binding.buttonEditSchedule.setOnClickListener {

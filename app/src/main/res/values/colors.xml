@@ -16,6 +16,7 @@
     <color name="course_card_header">#FF1976D2</color>
     <color name="course_card_outline">#FFBDBDBD</color>
     <color name="course_card_details">#FFF5F5F5</color>
+    <color name="card_background">#FFFFFFFF</color>
 
     <!-- Buttons -->
     <color name="button_edit">#FF4CAF50</color>

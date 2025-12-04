@@ -46,7 +46,7 @@ ids from uicomponent_course_card_01 :
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fall 2025"
-                android:textColor="@android:color/black"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -86,7 +86,7 @@ ids from uicomponent_course_card_01 :
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="9 units"
-            android:textColor="@color/semester_plan_credits"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,9 +101,17 @@ ids from uicomponent_course_card_01 :
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
+                android:id="@+id/button_semester_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_info"
+                android:contentDescription="Semester Info" />
+
+            <ImageButton
                 android:id="@+id/button_view_schedule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/btn_view_schedule"
                 android:contentDescription="View Schedule"/>
 

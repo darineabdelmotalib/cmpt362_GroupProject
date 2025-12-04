@@ -11,6 +11,7 @@ import darine_abdelmotalib.example.groupproject.R
 import darine_abdelmotalib.example.groupproject.databinding.FragmentProfileBinding
 import darine_abdelmotalib.example.groupproject.data.db.CsRequirementsDb
 import darine_abdelmotalib.example.groupproject.data.db.UserProgressDb
+import darine_abdelmotalib.example.groupproject.data.prefs.ThemePrefs
 
 class ProfileFragment : Fragment() {
 
@@ -47,6 +48,45 @@ class ProfileFragment : Fragment() {
         }
 
         setupCourseProgressBar()
+        setupDarkModeSwitch()
+        setupAvatarSelection()
+    }
+
+    private fun setupAvatarSelection() {
+        binding.buttonChangeAvatar.setOnClickListener {
+            val dialog = AvatarSelectionDialogFragment { _ ->
+                // Reload avatar when selection changes
+                loadAvatar()
+            }
+            dialog.show(parentFragmentManager, "AvatarSelectionDialog")
+        }
+    }
+
+    private fun loadAvatar() {
+        val context = requireContext()
+        val avatarUri = UserProfilePrefs.getAvatarUri(context)
+        
+        if (avatarUri != null) {
+            // Custom avatar from URI
+            try {
+                binding.profileCharacter.setImageURI(android.net.Uri.parse(avatarUri))
+            } catch (e: Exception) {
+                binding.profileCharacter.setImageResource(UserProfilePrefs.getAvatarDrawable(context))
+            }
+        } else {
+            // Use built-in avatar
+            binding.profileCharacter.setImageResource(UserProfilePrefs.getAvatarDrawable(context))
+        }
+    }
+
+    private fun setupDarkModeSwitch() {
+        // Set initial state
+        binding.switchDarkMode.isChecked = ThemePrefs.isDarkMode(requireContext())
+
+        // Handle switch changes
+        binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+            ThemePrefs.setDarkMode(requireContext(), isChecked)
+        }
     }
 
     override fun onResume() {
@@ -69,16 +109,7 @@ class ProfileFragment : Fragment() {
             binding.profileMajor.text = major1
         }
 
-        val avatarUri = UserProfilePrefs.getAvatarUri(context)
-        if (avatarUri != null) {
-            try {
-                binding.profileCharacter.setImageURI(android.net.Uri.parse(avatarUri))
-            } catch (e: Exception) {
-                binding.profileCharacter.setImageResource(R.drawable.default_pfp)
-            }
-        } else {
-            binding.profileCharacter.setImageResource(R.drawable.default_pfp)
-        }
+        loadAvatar()
     }
 
     private fun setupCourseProgressBar() {

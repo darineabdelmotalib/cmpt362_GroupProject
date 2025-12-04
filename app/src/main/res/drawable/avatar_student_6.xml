@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Background circle -->
+    <path
+        android:fillColor="#E0F7FA"
+        android:pathData="M100,100m-100,0a100,100 0,1 1,200 0a100,100 0,1 1,-200 0"/>
+    <!-- Face -->
+    <path
+        android:fillColor="#D7CCC8"
+        android:pathData="M100,65m-45,0a45,50 0,1 1,90 0a45,50 0,1 1,-90 0"/>
+    <!-- Hijab -->
+    <path
+        android:fillColor="#00BCD4"
+        android:pathData="M45,70 Q40,20 100,10 Q160,20 155,70 Q160,130 100,140 Q40,130 45,70"/>
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M65,65 Q65,45 100,40 Q135,45 135,65 Q135,95 100,105 Q65,95 65,65"/>
+    <!-- Eyes -->
+    <path
+        android:fillColor="#37474F"
+        android:pathData="M85,65m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0"/>
+    <path
+        android:fillColor="#37474F"
+        android:pathData="M115,65m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0"/>
+    <!-- Smile -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#37474F"
+        android:strokeWidth="3"
+        android:pathData="M90,82 Q100,92 110,82"/>
+    <!-- Body/Dress -->
+    <path
+        android:fillColor="#00BCD4"
+        android:pathData="M40,200 Q40,145 100,135 Q160,145 160,200 L40,200"/>
+</vector>
+

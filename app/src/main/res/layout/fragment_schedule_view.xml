@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="@color/page_bg">
+    android:background="?android:attr/colorBackground">
 
     <!-- Semester Header -->
     <TextView
@@ -16,7 +16,7 @@
         android:paddingTop="20dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:textStyle="bold"
         android:textSize="22sp"
         android:text="(Semester) (Year)"/>
@@ -29,7 +29,7 @@
         android:paddingEnd="20dp"
         android:paddingBottom="15dp"
         android:textSize="14sp"
-        android:textColor="@color/gray"
+        android:textColor="?android:attr/textColorSecondary"
         android:text="(#) units"/>
 
     <ScrollView
@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Schedule"
-                    android:textColor="@color/black"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textStyle="bold"
                     android:textSize="16sp"/>
 
@@ -99,7 +99,7 @@
                 android:paddingVertical="30dp"
                 android:text="No classes scheduled"
                 android:textAlignment="center"
-                android:textColor="@color/gray"
+                android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp"
                 android:visibility="gone"/>
 
@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Courses"
-                    android:textColor="@color/black"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textStyle="bold"
                     android:textSize="16sp"/>
 
@@ -139,7 +139,7 @@
                 android:paddingVertical="30dp"
                 android:text="No courses added yet.\nTap 'Edit Schedule' to add courses."
                 android:textAlignment="center"
-                android:textColor="@color/gray"
+                android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp"
                 android:visibility="gone"/>
 

@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="CMPT 362"
-            android:textColor="@android:color/black"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="16sp"
             android:textStyle="bold" />
         
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3 units"
-            android:textColor="@color/semester_plan_credits"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Mobile Applications Programming and Design"
-        android:textColor="@color/gray"
+        android:textColor="?android:attr/textColorSecondary"
         android:textSize="13sp"/>
 
 </LinearLayout>
