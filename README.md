@@ -82,7 +82,7 @@ Access the navigation drawer by tapping the **☰ hamburger menu** icon in the t
 1. **View existing semesters** - Each semester shows term name and total units
 2. **Add a semester** - Tap the **⋮ menu** → "Add Semester"
 3. **View Schedule** - Tap the calendar icon to see weekly schedule
-4. **Edit Schedule** - Tap the ✏pencil icon to add/remove courses
+4. **Edit Schedule** - Tap the pencil icon to add/remove courses
 
 ### Adding a Course
 1. From Semester Plan, tap **✏ Edit Schedule** on any semester
