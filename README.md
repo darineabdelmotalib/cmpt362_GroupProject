@@ -85,7 +85,7 @@ Access the navigation drawer by tapping the **☰ hamburger menu** icon in the t
 4. **Edit Schedule** - Tap the pencil icon to add/remove courses
 
 ### Adding a Course
-1. From Semester Plan, tap **✏ Edit Schedule** on any semester
+1. From Semester Plan, tap pencil Edit Schedule** on any semester
 2. **Search** for a course using the search bar (e.g., "CMPT 362")
 3. **Select a course** from the search results
 4. **Choose your sections**:
