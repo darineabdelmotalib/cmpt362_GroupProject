@@ -119,14 +119,4 @@ ids from uicomponent_course_card_01 :
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--List view for course cards-->
-    <!--items will use ui_component_course_card_01-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@id/semester_course_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="2.5dp"
-        android:layout_marginRight="2.5dp"
-    />
-
 </LinearLayout>

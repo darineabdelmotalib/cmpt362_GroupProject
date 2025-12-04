@@ -5,39 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/page_bg">
 
-    <!--DEBUG BUTTONS-->
-    <Button
-        android:id="@+id/debug_forward"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="debug_forward" />
-    <Button
-        android:id="@+id/debug_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="debug_back" />
-    <!--END DEBUG BUTTONS-->
-
+    <!-- Semester Header -->
     <TextView
         android:id="@+id/semester_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
-        android:paddingStart="15dp"
+        android:paddingTop="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:text="(Semester) (Year)"/>
 
     <TextView
         android:id="@+id/semester_units_taken"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="15dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:paddingBottom="15dp"
-        android:textSize="16sp"
+        android:textSize="14sp"
+        android:textColor="@color/gray"
         android:text="(#) units"/>
 
     <ScrollView
@@ -49,12 +41,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- Schedule Section Header -->
             <LinearLayout
                 android:id="@+id/scheduleHeaderLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="15dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="12dp"
                 android:background="?attr/selectableItemBackground">
 
                 <TextView
@@ -64,7 +58,7 @@
                     android:text="Schedule"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp"/>
 
                 <ImageView
                     android:id="@+id/toggle_schedule"
@@ -74,27 +68,49 @@
                     android:contentDescription="Toggle Schedule"/>
             </LinearLayout>
 
-            <FrameLayout
+            <!-- Schedule List (colored rows) -->
+            <LinearLayout
                 android:id="@+id/scheduleContentArea"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:background="#E0E0E0"
-                android:layout_marginHorizontal="15dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="15dp"
+                android:background="@drawable/bg_calendar_container"
+                android:clipChildren="true"
                 android:visibility="visible">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Schedule"/>
-            </FrameLayout>
 
+                <!-- Schedule items will be added here dynamically -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/scheduleRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+
+            <!-- Empty schedule message -->
+            <TextView
+                android:id="@+id/empty_schedule_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="30dp"
+                android:text="No classes scheduled"
+                android:textAlignment="center"
+                android:textColor="@color/gray"
+                android:textSize="14sp"
+                android:visibility="gone"/>
+
+            <!-- Courses Section Header -->
             <LinearLayout
                 android:id="@+id/coursesHeaderLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="15dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="12dp"
                 android:background="?attr/selectableItemBackground">
 
                 <TextView
@@ -104,7 +120,7 @@
                     android:text="Courses"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp"/>
 
                 <ImageView
                     android:id="@+id/toggle_courses"
@@ -114,16 +130,29 @@
                     android:contentDescription="Toggle Courses"/>
             </LinearLayout>
 
-            <!-- Will hold the ui component cards that have detailed course info-->
+            <!-- Empty state message -->
+            <TextView
+                android:id="@+id/empty_courses_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="30dp"
+                android:text="No courses added yet.\nTap 'Edit Schedule' to add courses."
+                android:textAlignment="center"
+                android:textColor="@color/gray"
+                android:textSize="14sp"
+                android:visibility="gone"/>
+
+            <!-- Course List -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/coursesRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
+                android:paddingHorizontal="20dp"
+                android:paddingBottom="20dp"
                 android:visibility="visible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:nestedScrollingEnabled="false"
-                />
+                android:nestedScrollingEnabled="false"/>
 
         </LinearLayout>
     </ScrollView>

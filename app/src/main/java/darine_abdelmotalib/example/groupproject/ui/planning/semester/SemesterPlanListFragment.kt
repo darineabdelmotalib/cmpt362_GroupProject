@@ -10,6 +10,7 @@ import android.view.MenuItem
 import androidx.core.view.MenuProvider
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.MenuHost
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -38,9 +39,16 @@ class SemesterPlanListFragment : Fragment() {
         viewModel = ViewModelProvider(this, SemesterPlanListViewModelFactory(appContext)).get(SemesterPlanListViewModel::class.java)
 
         adapter = SemesterAdapter(
-            onEditSemesterButtonClick = { /* ... */ },
-            onViewSemesterButtonClick = { /* ... */ },
-            onCourseClick = { /* ... */ }
+            onEditSemesterButtonClick = { semester ->
+                // Navigate to Add Course page with semester key
+                val bundle = bundleOf("semester_key" to semester.term)
+                findNavController().navigate(R.id.action_semesterPlanListFragment_to_addCourseFragment, bundle)
+            },
+            onViewSemesterButtonClick = { semester ->
+                // Navigate to Schedule View with semester info
+                val bundle = bundleOf("semester_key" to semester.term)
+                findNavController().navigate(R.id.action_semesterPlanListFragment_to_scheduleViewFragment, bundle)
+            }
         )
 
         _binding = FragmentSemesterPlanListBinding.inflate(inflater, container, false)
@@ -55,28 +63,7 @@ class SemesterPlanListFragment : Fragment() {
             adapter.submitList(list)
         }
 
-        /* -- DEBUG BUTTONS -- */
-        binding.debugForwardCourseinfo.setOnClickListener {
-            findNavController().navigate(R.id.action_semesterPlanListFragment_to_courseInfoPlanFragment)
-        }
-        binding.debugForwardScheduleview.setOnClickListener {
-            findNavController().navigate(R.id.action_semesterPlanListFragment_to_scheduleViewFragment)
-        }
-
-        /*Check logcat to see if sem adding/removing is successful*/
-//        binding.debugAddSem.setOnClickListener {
-//            viewModel.debugAddSem(appContext)
-//        }
-//        binding.debugAddCourse.setOnClickListener {
-//            viewModel.debugAddCourse(appContext)
-//        }
-//        binding.debugRemoveCourse.setOnClickListener {
-//            viewModel.debugRemoveCourse(appContext)
-//        }
-        binding.debugTest.setOnClickListener {
-            viewModel.debugTest()
-        }
-        /* -- END DEBUG BUTTONS -- */
+        /* Debug buttons removed from layout */
 
         return root
     }

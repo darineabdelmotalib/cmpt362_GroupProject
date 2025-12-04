@@ -61,6 +61,10 @@
         <action
             android:id="@+id/action_semesterPlanListFragment_to_scheduleViewFragment"
             app:destination="@id/scheduleViewFragment" />
+
+        <action
+            android:id="@+id/action_semesterPlanListFragment_to_addCourseFragment"
+            app:destination="@id/addCourseFragment" />
     </fragment>
 
     <fragment
@@ -77,12 +81,77 @@
     <fragment
         android:id="@+id/scheduleViewFragment"
         android:name="darine_abdelmotalib.example.groupproject.ui.planning.ScheduleViewFragment"
-        android:label="ScheduleViewFragment"
+        android:label="Semester Schedule"
         tools:layout="@layout/fragment_schedule_view">
+
+        <argument
+            android:name="semester_key"
+            app:argType="string"
+            android:defaultValue="" />
 
         <action
             android:id="@+id/action_scheduleViewFragment_to_semesterPlanListFragment"
             app:destination="@id/semesterPlanListFragment" />
+    </fragment>
+
+    <!-- Add Course Flow -->
+    <fragment
+        android:id="@+id/addCourseFragment"
+        android:name="darine_abdelmotalib.example.groupproject.ui.planning.AddCourseFragment"
+        android:label="Add Course"
+        tools:layout="@layout/fragment_add_course">
+
+        <argument
+            android:name="semester_key"
+            app:argType="string"
+            android:defaultValue="" />
+
+        <action
+            android:id="@+id/action_addCourseFragment_to_courseDetailAddFragment"
+            app:destination="@id/courseDetailAddFragment" />
+
+        <action
+            android:id="@+id/action_addCourseFragment_to_semesterPlanListFragment"
+            app:destination="@id/semesterPlanListFragment"
+            app:popUpTo="@id/semesterPlanListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/courseDetailAddFragment"
+        android:name="darine_abdelmotalib.example.groupproject.ui.planning.CourseDetailAddFragment"
+        android:label="Course Details"
+        tools:layout="@layout/fragment_course_detail_add">
+
+        <argument
+            android:name="semester_key"
+            app:argType="string"
+            android:defaultValue="" />
+
+        <argument
+            android:name="course_dept"
+            app:argType="string"
+            android:defaultValue="" />
+
+        <argument
+            android:name="course_number"
+            app:argType="string"
+            android:defaultValue="" />
+
+        <argument
+            android:name="course_label"
+            app:argType="string"
+            android:defaultValue="" />
+
+        <action
+            android:id="@+id/action_courseDetailAddFragment_to_semesterPlanListFragment"
+            app:destination="@id/semesterPlanListFragment"
+            app:popUpTo="@id/semesterPlanListFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_courseDetailAddFragment_to_addCourseFragment"
+            app:destination="@id/addCourseFragment" />
     </fragment>
 
     <!-- program reqs -->

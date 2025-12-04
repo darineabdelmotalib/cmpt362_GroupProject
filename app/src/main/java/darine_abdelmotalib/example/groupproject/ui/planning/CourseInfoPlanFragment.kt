@@ -22,12 +22,6 @@ class CourseInfoPlanFragment : Fragment() {
         _binding = FragmentCourseInfoPlanBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        /* -- DEBUG BUTTONS -- */
-        binding.debugBack.setOnClickListener {
-            findNavController().navigate(R.id.action_courseInfoPlanFragment_to_semesterPlanListFragment)
-        }
-        /* -- END DEBUG BUTTONS -- */
-
         return root
     }
 

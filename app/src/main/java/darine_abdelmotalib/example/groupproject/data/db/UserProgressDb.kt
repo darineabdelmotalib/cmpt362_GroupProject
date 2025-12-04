@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import darine_abdelmotalib.example.groupproject.data.api.CourseOutline
 import darine_abdelmotalib.example.groupproject.data.api.CourseSection
+import darine_abdelmotalib.example.groupproject.data.api.ScheduleInfo
 import darine_abdelmotalib.example.groupproject.data.api.SemesterItem
 import darine_abdelmotalib.example.groupproject.data.api.SfuCourseApi
 import darine_abdelmotalib.example.groupproject.data.prefs.CoursePrefs
@@ -124,15 +125,32 @@ object UserProgressDb {
         val codePair = unKey(key)
         val dept = codePair.first
         val number = codePair.second
-        val courseCode = "${dept.uppercase()} ${number}"
         val outline = SfuCourseApi.fetchCourseOutline(dept, number)
+        
+        // Get instructor and section from the first lecture section if available
+        val lectureSection = outline.sections.find { it.sectionType == "LEC" }
+        val labSection = outline.sections.find { it.sectionType == "LAB" || it.sectionType == "TUT" }
+        
+        val scheduleInfo = if (lectureSection != null) {
+            ScheduleInfo(
+                lectureSection = lectureSection.sectionCode,
+                lectureInstructor = lectureSection.instructor,
+                lectureSchedule = lectureSection.schedule,
+                lectureLocation = lectureSection.location,
+                labSection = labSection?.sectionCode,
+                labInstructor = labSection?.instructor,
+                labSchedule = labSection?.schedule,
+                labLocation = labSection?.location
+            )
+        } else null
 
         return CourseSection(
             code = key,
             courseOutline = outline,
-            instructor = "Instructor",
-            section = "P100",
-            classNumber = "0000"
+            instructor = lectureSection?.instructor ?: "TBA",
+            section = lectureSection?.sectionCode ?: "D100",
+            classNumber = lectureSection?.classNumber ?: "",
+            scheduleInfo = scheduleInfo
         )
     }
 

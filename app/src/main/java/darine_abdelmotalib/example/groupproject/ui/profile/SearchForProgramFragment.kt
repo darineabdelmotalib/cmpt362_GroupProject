@@ -104,10 +104,6 @@ class SearchForProgramFragment : Fragment() {
         binding.buttonSearchProgram.setOnClickListener {
             performSearch(binding.inputSearchProgram.text.toString())
         }
-
-        binding.debugBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
     }
 
     override fun onDestroyView() {

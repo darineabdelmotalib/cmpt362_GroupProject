@@ -50,16 +50,6 @@ class ChooseProgramFragment : Fragment() {
             )
         )
 
-        /* -- DEBUG BUTTONS -- */
-        binding.debugForward.setOnClickListener {
-            findNavController()
-                .navigate(R.id.action_chooseProgramFragment_to_programRequirementsFragment)
-        }
-        binding.debugBack.setOnClickListener {
-            findNavController().navigateUp()
-        }
-        /* -- END DEBUG BUTTONS -- */
-
         return root
     }
 

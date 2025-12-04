@@ -1,103 +1,263 @@
-<h1>SFU Course Planner</h1>
+# 📚 SFU Course Planner
 
-<p>A mobile application designed to help SFU students plan their degrees, track program requirements, and visualize prerequisite pathways. Developed for <strong>CMPT 362, Mobile Application Development</strong>.</p>
+A comprehensive mobile application designed to help SFU students plan their academic journey, track degree requirements, manage semester schedules, and visualize course prerequisites.
 
-<h2>Overview</h2>
+**Developed for CMPT 362 - Mobile Applications Programming and Design**
 
-<p>The SFU Course Planner provides a structured and interactive way for students to:</p>
+---
 
-<ul>
-  <li>Track and complete program requirements</li>
-  <li>View degree progress</li>
-  <li>Search for majors and minors</li>
-  <li>Explore detailed course information</li>
-  <li>Visualize prerequisite chains with an interactive Course Tree</li>
-  <li>Navigate efficiently with a drawer-based interface</li>
-</ul>
+## 📱 Overview
 
-<h2>Core Features</h2>
+The SFU Course Planner is your all-in-one academic companion that helps you:
 
-<ul>
-  <li>Program Requirements Checklist</li>
-  <li>Profile Progress Tracking</li>
-  <li>Semester Course Details</li>
-  <li>Program Search &amp; Selection</li>
-  <li>Interactive Course Tree</li>
-  <li>Persistent Database Storage</li>
-  <li>Navigation Drawer</li>
-</ul>
+- Track and complete program requirements
+- Monitor your degree progress
+- Plan semester schedules with real course data
+- Search for courses, majors, and minors
+- Visualize prerequisite chains with an interactive Course Tree
+- Manage your academic profile
 
-<h2>Project Structure</h2>
+---
 
-<pre>
-app/
- ├── manifests/
- ├── java/com/.../courseplanner/
- │    ├── activities/
- │    ├── adapters/
- │    ├── data/
- │    │     ├── AppDatabase.kt
- │    │     ├── CourseDao.kt
- │    │     ├── RequirementDao.kt
- │    │     └── entities/
- │    ├── models/
- │    ├── ui/
- │    └── utils/
- └── res/
-      ├── layout/
-      ├── drawable/
-      ├── values/
-      └── menu/
-</pre>
+## Features
 
-<h2>Threading Model</h2>
+### Profile & Progress Tracking
+- View your personalized profile with avatar
+- Track overall degree completion progress
+- See your major and minor selections
+- Edit profile information anytime
 
-<h3>UI Thread</h3>
-<ul>
-  <li>UI rendering</li>
-  <li>Navigation</li>
-  <li>Progress bar updates</li>
-  <li>Course Tree visualization</li>
-  <li>Checklist interactions</li>
-</ul>
+### Semester Planning
+- Create and manage multiple semesters (Fall, Spring, Summer)
+- Add courses to specific semesters
+- View total units per semester
+- Access detailed schedule view with weekly calendar
 
-<h3>Background Thread</h3>
-<ul>
-  <li>Database read/write operations</li>
-  <li>Loading requirement states</li>
-  <li>Loading Course Tree data</li>
-  <li>Scheduling computations (future)</li>
-</ul>
+### Add Courses
+- Search through available CS courses
+- View real course information from SFU API:
+  - Course descriptions
+  - Prerequisites
+  - Available sections (Lectures, Labs, Tutorials)
+  - **Real instructor names**
+  - **Actual class times and locations**
+- Select preferred lecture and lab sections
+- Add courses to your semester plan
 
-<h2>Future Enhancements</h2>
+### Schedule View
+- Weekly schedule display with colored time blocks
+- View all enrolled courses for a semester
+- Detailed course cards showing:
+  - Instructor information
+  - Lecture times and locations
+  - Lab/Tutorial times and locations
+- Collapsible sections for easy navigation
 
-<ul>
-  <li>Color-coded course connections</li>
-  <li>"Unavailable This Semester" indicator boxes</li>
-  <li>Interactive Maze Timeline</li>
-  <li>Dark Mode</li>
-  <li>Help &amp; Info section</li>
-  <li>Smoother UI transitions</li>
-  <li>Course notes and tagging</li>
-  <li>Course ratings (external + in-app)</li>
-</ul>
+### Program Requirements
+- View Computing Science degree requirements
+- Track lower division and upper division courses
+- Check off completed courses
+- See which requirements you still need
 
-## Libraries Used
+### Course Tree Visualization
+- Interactive prerequisite visualization
+- Zoom and pan capabilities
+- See course dependencies at a glance
 
-- **GraphView (oss-bandb)**
-  - Used for rendering the course tree graph
-  - https://github.com/oss-bandb/GraphView
-- **ZoomLayout (Otalia Studios)**
-  - Used to allow for zooming and panning of the course tree graph
-  - https://github.com/natario1/ZoomLayout
+---
 
-<h2>Team</h2>
+## Navigation Guide
 
-<ul>
-  <li>Angela Liong – Course Tree Visualization</li>
-  <li>Cas Sugihwo – App Structure & Navigation</li>
-  <li>Darine Abdelmotalib – Program Requirements & Database</li>
-  <li>Elaiza Chavez – Profile Progress Bar</li>
-  <li>Rana Hoshyarsadeghi – Presentation, website updates, feature planning</li>
-</ul>
+### Main Navigation (Drawer Menu)
+Access the navigation drawer by tapping the **☰ hamburger menu** icon in the top-left corner or swiping from the left edge:
 
+| Menu Item | Description |
+|-----------|-------------|
+| **Profile** | View/edit your profile, see degree progress |
+| **Semester Plan** | Manage your semester schedules and courses |
+| **Program Requirements** | View and track degree requirements |
+| **Course Tree** | Visualize course prerequisites |
+
+### Semester Plan Page
+1. **View existing semesters** - Each semester shows term name and total units
+2. **Add a semester** - Tap the **⋮ menu** → "Add Semester"
+3. **View Schedule** - Tap the calendar icon to see weekly schedule
+4. **Edit Schedule** - Tap the ✏pencil icon to add/remove courses
+
+### Adding a Course
+1. From Semester Plan, tap **✏ Edit Schedule** on any semester
+2. **Search** for a course using the search bar (e.g., "CMPT 362")
+3. **Select a course** from the search results
+4. **Choose your sections**:
+   - Select preferred lecture section
+   - Select lab/tutorial section (if available)
+5. Review your selection in the "Selected section" summary
+6. Tap **"Add this course"** to confirm
+
+### Viewing Your Schedule
+1. From Semester Plan, tap ** View Schedule** on any semester
+2. **Schedule section** - Shows weekly time slots with your classes
+3. **Courses section** - Lists all enrolled courses with details
+4. Tap section headers to expand/collapse
+
+### Profile Management
+1. Navigate to **Profile** from the drawer menu
+2. Tap the **progress bar** to view the Course Maze
+3. To edit profile:
+   - Go to Edit Profile from the menu
+   - Change your name, avatar, major, or minor
+   - Tap **"Save Changes"**
+
+---
+
+## Technical Details
+
+### Project Structure
+
+```
+app/src/main/
+├── java/darine_abdelmotalib/example/groupproject/
+│   ├── MainActivity.kt
+│   ├── data/
+│   │   ├── api/
+│   │   │   ├── Items.kt          # Data models
+│   │   │   ├── SfuCourseApi.kt   # SFU API integration
+│   │   │   └── CoursePrefs.kt    # SharedPreferences
+│   │   └── db/
+│   │       ├── CsRequirementsDb.kt   # CS requirements data
+│   │       └── UserProgressDb.kt     # User progress tracking
+│   ├── ui/
+│   │   ├── adapter/              # RecyclerView adapters
+│   │   ├── planning/             # Semester planning fragments
+│   │   │   ├── AddCourseFragment.kt
+│   │   │   ├── CourseDetailAddFragment.kt
+│   │   │   ├── ScheduleViewFragment.kt
+│   │   │   └── semester/
+│   │   ├── profile/              # Profile fragments
+│   │   ├── requirements/         # Requirements fragments
+│   │   ├── tree/                 # Course tree visualization
+│   │   └── maze/                 # Course maze feature
+│   └── utils/
+└── res/
+    ├── layout/                   # XML layouts
+    ├── drawable/                 # Icons and backgrounds
+    ├── navigation/               # Navigation graph
+    ├── values/                   # Colors, strings, styles
+    └── menu/                     # Menu definitions
+```
+
+### API Integration
+
+The app integrates with the **SFU Course Outlines API** to fetch real-time course data:
+
+```
+https://www.sfu.ca/bin/wcm/course-outlines
+```
+
+**Data fetched includes:**
+- Course titles and descriptions
+- Prerequisites
+- Credit units
+- Available sections (LEC, LAB, TUT)
+- Instructor names
+- Class schedules (days, times)
+- Locations (building, room)
+
+### Threading Model
+
+| Thread | Operations |
+|--------|------------|
+| **UI Thread** | UI rendering, navigation, user interactions |
+| **Background (Coroutines)** | API calls, database operations, data processing |
+
+### Data Persistence
+
+- **SharedPreferences** - User profile, semester data, course selections
+- **In-memory** - Course requirements database
+
+---
+
+## Dependencies
+
+### Libraries Used
+
+| Library | Purpose |
+|---------|---------|
+| **AndroidX Navigation** | Fragment navigation and drawer |
+| **Material Components** | UI components and theming |
+| **Kotlin Coroutines** | Asynchronous operations |
+| **GraphView** | Course tree graph rendering |
+| **ZoomLayout** | Zoom/pan for course tree |
+
+### External Resources
+
+- [GraphView by oss-bandb](https://github.com/oss-bandb/GraphView)
+- [ZoomLayout by Natario](https://github.com/natario1/ZoomLayout)
+- [SFU Course Outlines API](https://www.sfu.ca/outlines.html)
+
+---
+
+##  Getting Started
+
+### Prerequisites
+
+- Android Studio Arctic Fox or later
+- Android SDK 24+ (Android 7.0)
+- Internet connection (for fetching course data)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   ```
+
+2. **Open in Android Studio**
+   - File → Open → Select project folder
+
+3. **Sync Gradle**
+   - Android Studio will automatically sync dependencies
+
+4. **Run the app**
+   - Connect an Android device or start an emulator
+   - Click Run or press `Shift + F10`
+
+### Building APK
+
+```bash
+./gradlew assembleDebug
+```
+
+The APK will be generated at: `app/build/outputs/apk/debug/app-debug.apk`
+
+---
+
+## Team
+
+| Name | Contribution |
+|------|--------------|
+| **Angela Liong** | Course Tree Visualization |
+| **Cas Sugihwo** | App Structure & Navigation |
+| **Darine Abdelmotalib** | Program Requirements & Database |
+| **Elaiza Chavez** | Profile Progress Bar |
+| **Rana Hoshyarsadeghi** | Presentation, Website, Feature Planning |
+
+---
+
+## Future Enhancements
+
+- [ ] Dark mode support
+- [ ] Course notes and tagging
+- [ ] Export schedule to calendar
+- [ ] Push notifications for registration dates
+- [ ] Course ratings integration
+- [ ] Offline mode with cached data
+- [ ] Multiple program support (double majors)
+- [ ] GPA calculator
+- [ ] Degree audit comparison
+
+---
+
+<p align="center">
+  Made at Simon Fraser University
+</p>

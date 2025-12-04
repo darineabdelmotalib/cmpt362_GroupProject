@@ -10,19 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <!--DEBUG BUTTONS-->
-        <Button
-            android:id="@+id/debug_forward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="debug_forward" />
-        <Button
-            android:id="@+id/debug_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="debug_back" />
-        <!--END DEBUG BUTTONS-->
-    
         <FrameLayout
             android:layout_width="200dp"
             android:layout_height="200dp"

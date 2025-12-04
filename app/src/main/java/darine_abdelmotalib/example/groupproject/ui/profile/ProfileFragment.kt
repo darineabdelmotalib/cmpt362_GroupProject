@@ -28,15 +28,9 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        /* -- DEBUG BUTTONS -- */
-        binding.debugForward.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
-        }
-
         binding.profileProgressBar.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_courseMazeFragment)
         }
-        /* -- END DEBUG BUTTONS -- */
 
         return root
     }

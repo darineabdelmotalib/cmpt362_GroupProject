@@ -3,10 +3,8 @@ package darine_abdelmotalib.example.groupproject.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import darine_abdelmotalib.example.groupproject.data.api.CourseSection
 import darine_abdelmotalib.example.groupproject.data.api.SemesterItem
 import darine_abdelmotalib.example.groupproject.data.db.UserProgressDb
 import darine_abdelmotalib.example.groupproject.databinding.ComponentSemesterPlanBinding
@@ -14,8 +12,7 @@ import darine_abdelmotalib.example.groupproject.databinding.ComponentSemesterPla
 
 class SemesterAdapter(
     private val onEditSemesterButtonClick: (SemesterItem) -> Unit,
-    private val onViewSemesterButtonClick: (SemesterItem) -> Unit,
-    private val onCourseClick: (CourseSection) -> Unit
+    private val onViewSemesterButtonClick: (SemesterItem) -> Unit
 ) : ListAdapter<SemesterItem, SemesterAdapter.SemesterViewHolder>(SemesterDiffCallback()) {
 
     inner class SemesterViewHolder(private val binding: ComponentSemesterPlanBinding) :
@@ -34,14 +31,6 @@ class SemesterAdapter(
             binding.buttonViewSchedule.setOnClickListener {
                 onViewSemesterButtonClick(semester)
             }
-
-            val courseAdapter = CourseAdapter(onCourseClick)
-            binding.semesterCourseList.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = courseAdapter
-            }
-
-            courseAdapter.submitList(semester.courseList)
         }
 
         fun convertKey(key: String): String{

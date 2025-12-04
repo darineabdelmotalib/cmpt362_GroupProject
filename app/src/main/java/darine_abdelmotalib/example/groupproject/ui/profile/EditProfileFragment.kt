@@ -146,14 +146,6 @@ class EditProfileFragment : Fragment() {
         }
 
         binding.buttonCancel.setOnClickListener { findNavController().popBackStack() }
-
-        /* -- DEBUG BUTTONS -- */
-        binding.debugForward.setOnClickListener {
-            findNavController().navigate(R.id.action_editProfileFragment_to_searchForProgramFragment)
-        }
-        binding.debugBack.setOnClickListener {
-            findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
-        }
     }
 
     override fun onDestroyView() {
