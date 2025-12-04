@@ -265,7 +265,7 @@ The APK will be generated at: `app/build/outputs/apk/debug/app-debug.apk`
 ---
 
 > **Note:** The following features were added after the project deadline for personal enhancement:
-> - **Semester Timeline Info Button** (purple ℹ button) - View important semester dates
+> - **Semester Timeline Info Button** (purple button) - View important semester dates
 > - **Dark Mode Toggle** - Switch between light and dark themes on the Profile page
 > - **Avatar Selection** - Choose from 6 different character avatars on the Profile page
 
